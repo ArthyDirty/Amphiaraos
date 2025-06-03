@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Amphiaraos_v2"
-run/main_scene="uid://cevocbi5wmjfi"
+run/main_scene="uid://qi4wy48xqd82"
 config/features=PackedStringArray("4.4", "Forward Plus")
 config/icon="res://icon.svg"
 

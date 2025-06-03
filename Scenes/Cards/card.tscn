@@ -1,13 +1,15 @@
-[gd_scene load_steps=5 format=3 uid="uid://cevocbi5wmjfi"]
+[gd_scene load_steps=6 format=3 uid="uid://cevocbi5wmjfi"]
 
 [ext_resource type="Script" uid="uid://c6a2rsrvd616e" path="res://Scripts/Card.gd" id="1_ws51j"]
 [ext_resource type="Resource" uid="uid://dhl40n5y1xxf0" path="res://Scenes/Cards/full_moon.tres" id="2_ylnsc"]
 [ext_resource type="SpriteFrames" uid="uid://bxyy3uqjkgih0" path="res://Sprites/Sprite frames/blank_card_sprite_frames.tres" id="3_ylnsc"]
+[ext_resource type="SpriteFrames" uid="uid://dmpmyk4saqleh" path="res://Sprites/Sprite frames/surbrillance_sprite_frames.tres" id="4_se2ob"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_se2ob"]
 size = Vector2(574, 1092)
 
-[node name="Card" type="Area2D"]
+[node name="Card" type="Area2D" groups=["cartes"]]
+collision_mask = 2
 script = ExtResource("1_ws51j")
 data = ExtResource("2_ylnsc")
 
@@ -16,6 +18,22 @@ sprite_frames = ExtResource("3_ylnsc")
 animation = &"recto"
 
 [node name="SurbrillanceAnimatedSprite" type="AnimatedSprite2D" parent="."]
+sprite_frames = ExtResource("4_se2ob")
+animation = &"surbrillance"
+
+[node name="CardButton" type="Button" parent="."]
+modulate = Color(1, 1, 1, 0)
+offset_left = -285.0
+offset_top = -545.0
+offset_right = 293.0
+offset_bottom = 553.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_se2ob")
+
+[connection signal="area_entered" from="." to="." method="_on_emplacement_entered"]
+[connection signal="area_exited" from="." to="." method="_on_emplacement_exited"]
+[connection signal="button_down" from="CardButton" to="." method="_on_card_button_down"]
+[connection signal="button_up" from="CardButton" to="." method="_on_card_button_up"]
+[connection signal="mouse_entered" from="CardButton" to="." method="_on_card_button_mouse_entered"]
+[connection signal="mouse_exited" from="CardButton" to="." method="_on_card_button_mouse_exited"]

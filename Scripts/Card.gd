@@ -3,6 +3,7 @@ class_name Card
 
 @export var data: CardData
 
+@onready var card: Card = $"."
 @onready var card_animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var surbrillance_animated_sprite: AnimatedSprite2D = $SurbrillanceAnimatedSprite
 
@@ -25,18 +26,24 @@ func _ready():
 		return
 	
 	var frames = load(data.sprite_frames_path)
+	var surbrillance_frames = load(data.surbrillance_sprite_frames_path)
 	if frames == null:
 		print("Impossible de charger SpriteFrames depuis ", data.sprite_frames_path)
 		return
+	if surbrillance_frames == null:
+		print("Impossible de charger SurbrillanceSpriteFrames depuis ", data.surbrillance_sprite_frames_path)
+		return
 	
 	card_animated_sprite.frames = frames
+	surbrillance_animated_sprite.frames = surbrillance_frames
 	card_animated_sprite.play("flip")
-	last_pos = card_animated_sprite.global_position
+	surbrillance_animated_sprite.play("default")
+	last_pos = card.global_position
 
 func _process(delta):
 	var mouse_pos = get_viewport().get_mouse_position()
 	if card_clicked and not card_placed:
-		card_animated_sprite.global_position = mouse_pos + dif_pos
+		card.global_position = mouse_pos + dif_pos
 	
 	if card_placed and hide_when_placed and not card_revealed:
 		card_animated_sprite.play("hide")
@@ -45,21 +52,23 @@ func _process(delta):
 
 func _on_card_button_down():
 	card_clicked = true
-	last_pos = card_animated_sprite.global_position
-	surbrillance_animated_sprite.play("nothing")
-	dif_pos = card_animated_sprite.global_position - get_viewport().get_mouse_position()
-	card_animated_sprite.z_index = 5
+	last_pos = card.global_position
+	surbrillance_animated_sprite.play("default")
+	dif_pos = card.global_position - get_viewport().get_mouse_position()
+	card.z_index = 5
 
 func _on_card_button_up():
 	card_clicked = false
-	card_animated_sprite.z_index = 3
+	card.z_index = 3
 	
 	if emplacement_hover:
-		card_animated_sprite.global_position = emplacement_pos
+		card.global_position = emplacement_pos
 		last_emplacement.place_card(data.name)
 		card_placed = true
 	else:
-		card_animated_sprite.global_position = last_pos
+		# Animation fluide pour retour à la position initiale
+		var tween = create_tween()
+		tween.tween_property(card, "global_position", last_pos, 0.2)
 		surbrillance_animated_sprite.play("surbrillance")
 
 func _on_card_button_mouse_entered():
@@ -67,7 +76,7 @@ func _on_card_button_mouse_entered():
 		surbrillance_animated_sprite.play("surbrillance")
 
 func _on_card_button_mouse_exited():
-	surbrillance_animated_sprite.play("nothing")
+	surbrillance_animated_sprite.play("default")
 
 func _on_emplacement_entered(emplacement):
 	if emplacement.is_free():

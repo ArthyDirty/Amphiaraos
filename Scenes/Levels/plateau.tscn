@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://qi4wy48xqd82"]
+
+[ext_resource type="Texture2D" uid="uid://clgxhavyx8tfy" path="res://Sprites/Plateau.png" id="1_wqnu0"]
+[ext_resource type="PackedScene" uid="uid://cevocbi5wmjfi" path="res://Scenes/Cards/card.tscn" id="2_1v8e7"]
+[ext_resource type="PackedScene" uid="uid://yflcd83ftsjq" path="res://Scenes/Utilities/emplacement.tscn" id="3_1v8e7"]
+
+[node name="Plateau" type="Node2D"]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="PlateauSprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("1_wqnu0")
+
+[node name="Card" parent="." instance=ExtResource("2_1v8e7")]
+scale = Vector2(0.25, 0.25)
+
+[node name="Emplacement" parent="." instance=ExtResource("3_1v8e7")]
+position = Vector2(-464, 0)
