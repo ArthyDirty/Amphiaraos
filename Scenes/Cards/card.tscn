@@ -1,0 +1,21 @@
+[gd_scene load_steps=5 format=3 uid="uid://cevocbi5wmjfi"]
+
+[ext_resource type="Script" uid="uid://c6a2rsrvd616e" path="res://Scripts/Card.gd" id="1_ws51j"]
+[ext_resource type="Resource" uid="uid://dhl40n5y1xxf0" path="res://Scenes/Cards/full_moon.tres" id="2_ylnsc"]
+[ext_resource type="SpriteFrames" uid="uid://bxyy3uqjkgih0" path="res://Sprites/Sprite frames/blank_card_sprite_frames.tres" id="3_ylnsc"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_se2ob"]
+size = Vector2(574, 1092)
+
+[node name="Card" type="Area2D"]
+script = ExtResource("1_ws51j")
+data = ExtResource("2_ylnsc")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = ExtResource("3_ylnsc")
+animation = &"recto"
+
+[node name="SurbrillanceAnimatedSprite" type="AnimatedSprite2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_se2ob")
