@@ -1,0 +1,52 @@
+[gd_scene load_steps=7 format=3 uid="uid://by77h5yf5dwym"]
+
+[ext_resource type="Texture2D" uid="uid://cbjjt5nybpym4" path="res://Sprites/Sprite_ResetButton_up.png" id="1_l5b1u"]
+[ext_resource type="Script" uid="uid://b4hbp82kptcvd" path="res://Scripts/reset_button.gd" id="1_nvsrb"]
+[ext_resource type="Texture2D" uid="uid://cl23gchw26vbx" path="res://Sprites/Sprite_ResetButton_down.png" id="2_nvsrb"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dme81"]
+atlas = ExtResource("1_l5b1u")
+region = Rect2(0, 0, 471, 471)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hppcr"]
+atlas = ExtResource("2_nvsrb")
+region = Rect2(0, 0, 472, 471)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_380m4"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dme81")
+}],
+"loop": false,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hppcr")
+}],
+"loop": false,
+"name": &"hover",
+"speed": 5.0
+}]
+
+[node name="Reset_button" type="Node2D"]
+scale = Vector2(0.2, 0.2)
+script = ExtResource("1_nvsrb")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_380m4")
+animation = &"hover"
+autoplay = "default"
+
+[node name="Button" type="Button" parent="."]
+self_modulate = Color(1, 1, 1, 0)
+offset_left = -162.0
+offset_top = -167.0
+offset_right = 170.0
+offset_bottom = 175.0
+
+[connection signal="button_up" from="Button" to="." method="_on_button_button_up"]
+[connection signal="mouse_entered" from="Button" to="." method="_on_button_mouse_entered"]
+[connection signal="mouse_exited" from="Button" to="." method="_on_button_mouse_exited"]

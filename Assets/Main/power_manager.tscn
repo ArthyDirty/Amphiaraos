@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://do02x6mxh2ey8"]
+
+[ext_resource type="Script" uid="uid://w8oc5q5n22lv" path="res://Assets/Main/power_manager.gd" id="1_c473b"]
+
+[node name="PowerManager" type="Node"]
+script = ExtResource("1_c473b")

@@ -1,0 +1,84 @@
+[gd_scene load_steps=10 format=3 uid="uid://swn4k3qkwsbt"]
+
+[ext_resource type="Texture2D" uid="uid://x6sp4blnx1c0" path="res://Sprites/Cartes.png" id="1_0wihq"]
+[ext_resource type="Script" uid="uid://j3c1s1ut4amm" path="res://Scripts/deck.gd" id="1_njueb"]
+[ext_resource type="Texture2D" uid="uid://lb8d1uexayog" path="res://Sprites/Effets.png" id="3_iqpr7"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_njueb"]
+atlas = ExtResource("1_0wihq")
+region = Rect2(680, 3600, 680, 1200)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_iqpr7"]
+atlas = ExtResource("1_0wihq")
+region = Rect2(0, 4800, 680, 1200)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_mnoqo"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_njueb")
+}],
+"loop": false,
+"name": &"empty",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_iqpr7")
+}],
+"loop": false,
+"name": &"not_empty",
+"speed": 5.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vajyq"]
+atlas = ExtResource("3_iqpr7")
+region = Rect2(5440, 0, 1360, 2400)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_08av7"]
+atlas = ExtResource("3_iqpr7")
+region = Rect2(0, 0, 1360, 2400)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ogsdc"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vajyq")
+}],
+"loop": false,
+"name": &"nothing",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_08av7")
+}],
+"loop": false,
+"name": &"surbrillance",
+"speed": 5.0
+}]
+
+[node name="Deck" type="Node2D"]
+scale = Vector2(0.2, 0.2)
+script = ExtResource("1_njueb")
+
+[node name="DeckAnimatedSprite" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_mnoqo")
+animation = &"empty"
+autoplay = "empty"
+
+[node name="Button" type="Button" parent="."]
+self_modulate = Color(1, 1, 1, 0)
+offset_left = -340.0
+offset_top = -600.0
+offset_right = 340.0
+offset_bottom = 600.0
+
+[node name="SurbrillanceAnimatedSprite" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_ogsdc")
+animation = &"nothing"
+autoplay = "nothing"
+
+[connection signal="button_up" from="Button" to="." method="_on_button_up"]
+[connection signal="mouse_entered" from="Button" to="." method="_on_button_mouse_entered"]
+[connection signal="mouse_exited" from="Button" to="." method="_on_button_mouse_exited"]
