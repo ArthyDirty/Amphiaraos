@@ -37,10 +37,16 @@ func _on_button_mouse_exited() -> void:
 	surbrillance_animated_sprite.play("default")
 
 
-func draw_card():
-	if deck_empty:
+func draw_card(card: CardData = null):
+	var card_data = card
+	
+	if card:
+		card_data = card
+	elif deck_empty:
 		return null
-	var card_data = cards.pop_front()
+	else:
+		card_data = cards.pop_front()
+	
 	var card_instance = card_scene.instantiate()
 	call_deferred("add_child", card_instance)
 	card_instance.set_card_data(card_data)

@@ -12,8 +12,14 @@ func _on_card_drawn(card_drawn : Card):
 		card_drawn.hide_card_on_draw()
 		return
 	
-	var power_type = card_drawn.data.power_type
-	PowerTypes.apply_power(power_type, card_drawn, deck)
+	card_drawn.card_flipped.connect(_on_card_flipped)
+	
+	
+
+
+func _on_card_flipped(card):
+	var power_type = card.data.power_type
+	PowerTypes.apply_power(power_type, card, deck)
 
 
 func set_hide_next(state: bool):

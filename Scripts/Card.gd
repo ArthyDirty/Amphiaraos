@@ -20,6 +20,9 @@ var last_emplacement
 var last_pos
 var dif_pos
 
+signal card_flipped(card)
+
+
 func _ready():
 	if data == null:
 		print("Pas de CardData assignée")
@@ -38,6 +41,8 @@ func _ready():
 	surbrillance_animated_sprite.frames = surbrillance_frames
 	if !card_hidden:
 		card_animated_sprite.play("flip")
+		await card_animated_sprite.animation_finished
+		card_flipped.emit(card)
 	else:
 		card_animated_sprite.play("hidden")
 		
@@ -102,5 +107,30 @@ func show_card():
 	if card_hidden:
 		card_animated_sprite.play("flip")
 
+func burn_card():
+	var burn_sprite = AnimatedSprite2D.new()
+	add_child(burn_sprite)
+	burn_sprite.z_index = 6
+	burn_sprite.frames = preload("res://Sprites/Sprite frames/sun_sprite_frames.tres")
+	burn_sprite.play("burn")
+
 func set_card_data(card_data: CardData) -> void:
 	data = card_data
+	
+	if card_animated_sprite:
+		if data == null:
+			print("Pas de CardData assignée")
+			return
+		
+		var frames = load(data.sprite_frames_path)
+		var surbrillance_frames = load(data.surbrillance_sprite_frames_path)
+		if frames == null:
+			print("Impossible de charger SpriteFrames depuis ", data.sprite_frames_path)
+			return
+		if surbrillance_frames == null:
+			print("Impossible de charger SurbrillanceSpriteFrames depuis ", data.surbrillance_sprite_frames_path)
+			return
+		
+		card_animated_sprite.frames = frames
+		surbrillance_animated_sprite.frames = surbrillance_frames
+	
