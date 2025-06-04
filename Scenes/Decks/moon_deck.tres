@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="DeckData" load_steps=2 format=3 uid="uid://cuniqls2vom7r"]
+
+[ext_resource type="Script" uid="uid://bwc1mk78xwfdd" path="res://Scripts/DeckData.gd" id="1_xin7j"]
+
+[resource]
+script = ExtResource("1_xin7j")
+deck_name = "moon_deck"
+cards = Array[PackedScene]([])
+metadata/_custom_type_script = "uid://bwc1mk78xwfdd"
