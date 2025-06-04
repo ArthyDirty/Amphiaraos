@@ -31,7 +31,7 @@ func _on_button_mouse_entered() -> void:
 
 
 func _on_button_mouse_exited() -> void:
-	surbrillance_animated_sprite.play("nothing")
+	surbrillance_animated_sprite.play("default")
 
 
 func draw_card():
@@ -49,12 +49,12 @@ func draw_card():
 	return card
 
 
-func add_card(scene: PackedScene, position: String = "") -> void:
+func add_card(scene: PackedScene, order: String = "") -> void:
 	if scene == null:
 		print("Tentative d'ajouter une carte nulle au deck.")
 		return
 
-	match position:
+	match order:
 		"top":
 			cards.insert(0, scene)  # sommet du deck
 		"bottom":

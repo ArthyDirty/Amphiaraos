@@ -36,11 +36,15 @@ func _ready():
 	
 	card_animated_sprite.frames = frames
 	surbrillance_animated_sprite.frames = surbrillance_frames
-	card_animated_sprite.play("flip")
+	if !card_hidden:
+		card_animated_sprite.play("flip")
+	else:
+		card_animated_sprite.play("hidden")
+		
 	surbrillance_animated_sprite.play("default")
 	last_pos = card.global_position
 
-func _process(delta):
+func _process(_delta):
 	var mouse_pos = get_viewport().get_mouse_position()
 	if card_clicked and not card_placed:
 		card.global_position = mouse_pos + dif_pos
@@ -84,12 +88,11 @@ func _on_emplacement_entered(emplacement):
 		emplacement_pos = emplacement.global_position
 		last_emplacement = emplacement
 
-func _on_emplacement_exited(emplacement):
+func _on_emplacement_exited(_emplacement):
 	emplacement_hover = false
 
-func hide_card():
+func hide_card_on_draw():
 	card_hidden = true
-	card_animated_sprite.play("hidden")
 
 func hide_card_when_placed():
 	hide_when_placed = true

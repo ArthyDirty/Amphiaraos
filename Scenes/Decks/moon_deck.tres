@@ -1,9 +1,10 @@
-[gd_resource type="Resource" script_class="DeckData" load_steps=2 format=3 uid="uid://cuniqls2vom7r"]
+[gd_resource type="Resource" script_class="DeckData" load_steps=3 format=3 uid="uid://cuniqls2vom7r"]
 
+[ext_resource type="PackedScene" uid="uid://cevocbi5wmjfi" path="res://Scenes/Cards/card.tscn" id="1_2uot5"]
 [ext_resource type="Script" uid="uid://bwc1mk78xwfdd" path="res://Scripts/DeckData.gd" id="1_xin7j"]
 
 [resource]
 script = ExtResource("1_xin7j")
 deck_name = "moon_deck"
-cards = Array[PackedScene]([])
+cards = Array[PackedScene]([ExtResource("1_2uot5"), ExtResource("1_2uot5"), ExtResource("1_2uot5"), ExtResource("1_2uot5"), ExtResource("1_2uot5"), ExtResource("1_2uot5"), ExtResource("1_2uot5"), ExtResource("1_2uot5"), ExtResource("1_2uot5")])
 metadata/_custom_type_script = "uid://bwc1mk78xwfdd"

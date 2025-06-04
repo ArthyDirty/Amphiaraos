@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="CardData" load_steps=2 format=3 uid="uid://mac3sf3xdxup"]
+
+[ext_resource type="Script" uid="uid://bkbor60wfe7wr" path="res://Scripts/CardData.gd" id="1_3wle8"]
+
+[resource]
+script = ExtResource("1_3wle8")
+name = "half_moon"
+power_type = 1
+sprite_frames_path = "res://Sprites/Sprite frames/half_moon_sprite_frames.tres"
+surbrillance_sprite_frames_path = null
+metadata/_custom_type_script = "uid://bkbor60wfe7wr"

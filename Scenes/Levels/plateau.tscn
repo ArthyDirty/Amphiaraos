@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://qi4wy48xqd82"]
+[gd_scene load_steps=5 format=3 uid="uid://qi4wy48xqd82"]
 
 [ext_resource type="Texture2D" uid="uid://clgxhavyx8tfy" path="res://Sprites/Plateau.png" id="1_wqnu0"]
-[ext_resource type="PackedScene" uid="uid://cevocbi5wmjfi" path="res://Scenes/Cards/card.tscn" id="2_1v8e7"]
 [ext_resource type="PackedScene" uid="uid://yflcd83ftsjq" path="res://Scenes/Utilities/emplacement.tscn" id="3_1v8e7"]
+[ext_resource type="PackedScene" uid="uid://d14t5h65ng55w" path="res://Scenes/Decks/deck.tscn" id="3_128kh"]
+[ext_resource type="Resource" uid="uid://cuniqls2vom7r" path="res://Scenes/Decks/moon_deck.tres" id="4_128kh"]
 
 [node name="Plateau" type="Node2D"]
 
@@ -12,8 +13,44 @@
 scale = Vector2(0.25, 0.25)
 texture = ExtResource("1_wqnu0")
 
-[node name="Card" parent="." instance=ExtResource("2_1v8e7")]
-scale = Vector2(0.25, 0.25)
-
 [node name="Emplacement" parent="." instance=ExtResource("3_1v8e7")]
-position = Vector2(-464, 0)
+position = Vector2(-736, 0)
+emp_row = 1
+
+[node name="Emplacement2" parent="." instance=ExtResource("3_1v8e7")]
+position = Vector2(-518, 0)
+emp_col = 1
+emp_row = 1
+
+[node name="Emplacement3" parent="." instance=ExtResource("3_1v8e7")]
+position = Vector2(-302, 0)
+emp_col = 2
+emp_row = 1
+
+[node name="Emplacement4" parent="." instance=ExtResource("3_1v8e7")]
+position = Vector2(-736, -344)
+
+[node name="Emplacement5" parent="." instance=ExtResource("3_1v8e7")]
+position = Vector2(-518, -344)
+emp_col = 1
+
+[node name="Emplacement6" parent="." instance=ExtResource("3_1v8e7")]
+position = Vector2(-302, -344)
+emp_col = 2
+
+[node name="Emplacement7" parent="." instance=ExtResource("3_1v8e7")]
+position = Vector2(-736, 342)
+emp_row = 2
+
+[node name="Emplacement8" parent="." instance=ExtResource("3_1v8e7")]
+position = Vector2(-518, 342)
+emp_col = 1
+emp_row = 2
+
+[node name="Emplacement9" parent="." instance=ExtResource("3_1v8e7")]
+position = Vector2(-302, 342)
+emp_col = 2
+emp_row = 2
+
+[node name="Deck" parent="." instance=ExtResource("3_128kh")]
+deck_data = ExtResource("4_128kh")
