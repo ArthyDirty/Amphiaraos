@@ -1,3 +1,5 @@
+class_name PowerTypes
+
 extends Node
 
 enum PowerType {
@@ -14,7 +16,7 @@ static func apply_power(power_type: PowerType, card, deck = null):
 
 		PowerType.HIDE_NEXT:
 			if deck:
-				deck.get_node("PowerManager").set_hide_next(true)
+				PowerManager.set_hide_next(true)
 
 		PowerType.COPY:
 			print("Pouvoir COPY non encore implémenté")

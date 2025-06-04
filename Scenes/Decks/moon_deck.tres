@@ -1,10 +1,13 @@
-[gd_resource type="Resource" script_class="DeckData" load_steps=3 format=3 uid="uid://cuniqls2vom7r"]
+[gd_resource type="Resource" script_class="DeckData" load_steps=6 format=3 uid="uid://cuniqls2vom7r"]
 
-[ext_resource type="PackedScene" uid="uid://cevocbi5wmjfi" path="res://Scenes/Cards/card.tscn" id="1_2uot5"]
+[ext_resource type="Script" uid="uid://bkbor60wfe7wr" path="res://Scripts/CardData.gd" id="1_1ndal"]
+[ext_resource type="Resource" uid="uid://b8a38c3k6jw13" path="res://Scenes/Cards/new_moon.tres" id="1_pirie"]
 [ext_resource type="Script" uid="uid://bwc1mk78xwfdd" path="res://Scripts/DeckData.gd" id="1_xin7j"]
+[ext_resource type="Resource" uid="uid://mac3sf3xdxup" path="res://Scenes/Cards/half_moon.tres" id="2_1ndal"]
+[ext_resource type="Resource" uid="uid://dhl40n5y1xxf0" path="res://Scenes/Cards/full_moon.tres" id="3_0ttsq"]
 
 [resource]
 script = ExtResource("1_xin7j")
 deck_name = "moon_deck"
-cards = Array[PackedScene]([ExtResource("1_2uot5"), ExtResource("1_2uot5"), ExtResource("1_2uot5"), ExtResource("1_2uot5"), ExtResource("1_2uot5"), ExtResource("1_2uot5"), ExtResource("1_2uot5"), ExtResource("1_2uot5"), ExtResource("1_2uot5")])
+cards = Array[ExtResource("1_1ndal")]([ExtResource("1_pirie"), ExtResource("1_pirie"), ExtResource("1_pirie"), ExtResource("2_1ndal"), ExtResource("2_1ndal"), ExtResource("2_1ndal"), ExtResource("3_0ttsq"), ExtResource("3_0ttsq"), ExtResource("3_0ttsq")])
 metadata/_custom_type_script = "uid://bwc1mk78xwfdd"

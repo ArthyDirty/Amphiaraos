@@ -1,7 +1,7 @@
 extends Area2D
 class_name Card
 
-@export var data: CardData
+var data: CardData
 
 @onready var card: Card = $"."
 @onready var card_animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
@@ -101,3 +101,6 @@ func show_card():
 	card_revealed = true
 	if card_hidden:
 		card_animated_sprite.play("flip")
+
+func set_card_data(card_data: CardData) -> void:
+	data = card_data

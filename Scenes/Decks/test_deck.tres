@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="DeckData" load_steps=4 format=3 uid="uid://c2pq54a6d13jj"]
+
+[ext_resource type="Script" uid="uid://bkbor60wfe7wr" path="res://Scripts/CardData.gd" id="1_jklq1"]
+[ext_resource type="Resource" uid="uid://cfbtehybyshn6" path="res://Scenes/Cards/sun.tres" id="2_b67vh"]
+[ext_resource type="Script" uid="uid://bwc1mk78xwfdd" path="res://Scripts/DeckData.gd" id="5_s2g1c"]
+
+[resource]
+script = ExtResource("5_s2g1c")
+deck_name = "test_deck"
+cards = Array[ExtResource("1_jklq1")]([ExtResource("2_b67vh")])
+metadata/_custom_type_script = "uid://bwc1mk78xwfdd"

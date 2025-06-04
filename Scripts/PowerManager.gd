@@ -1,15 +1,9 @@
-class_name PowerManager
-
 extends Node
 
 
-const PowerTypes = preload("res://Scripts/PowerTypes.gd")
-@onready var deck: Deck = $".."
+var deck: Deck = null
 
 var hide_next = false
-
-func _ready() -> void:
-	deck.card_drawn.connect(_on_card_drawn)
 
 
 func _on_card_drawn(card_drawn : Card):
@@ -28,3 +22,10 @@ func set_hide_next(state: bool):
 
 func should_hide_next() -> bool:
 	return hide_next
+
+
+func set_deck(new_deck: Deck) -> void:
+	deck = new_deck
+	# Connecter ou reconnecter le signal, par exemple
+	if deck:
+		deck.card_drawn.connect(_on_card_drawn)

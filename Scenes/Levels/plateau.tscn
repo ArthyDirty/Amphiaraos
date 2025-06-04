@@ -3,7 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://clgxhavyx8tfy" path="res://Sprites/Plateau.png" id="1_wqnu0"]
 [ext_resource type="PackedScene" uid="uid://yflcd83ftsjq" path="res://Scenes/Utilities/emplacement.tscn" id="3_1v8e7"]
 [ext_resource type="PackedScene" uid="uid://d14t5h65ng55w" path="res://Scenes/Decks/deck.tscn" id="3_128kh"]
-[ext_resource type="Resource" uid="uid://cuniqls2vom7r" path="res://Scenes/Decks/moon_deck.tres" id="4_128kh"]
+[ext_resource type="Resource" uid="uid://c2pq54a6d13jj" path="res://Scenes/Decks/test_deck.tres" id="4_128kh"]
 
 [node name="Plateau" type="Node2D"]
 
