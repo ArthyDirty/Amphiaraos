@@ -30,6 +30,18 @@ func should_hide_next() -> bool:
 	return hide_next
 
 
+func copy_card(card):
+	# reste à implémenter le choix de la carte et à charger le card_data correspondant
+	# choix de la carte possible soit par sélection d'une carte déjà posée
+	# soit une carte parmis les cartes intitialement présentes dans le deck
+	
+	var card_data = preload("res://Scenes/Cards/blank_card.tres")
+	# transforme et brule la carte en la carte selectionnée (pour l'instant blank_card par défaut)
+	card.set_card_data(card_data)
+	card.burn_card()
+	card.card_animated_sprite.play("verso")
+
+
 func set_deck(new_deck: Deck) -> void:
 	deck = new_deck
 	# Connecter ou reconnecter le signal, par exemple

@@ -19,10 +19,8 @@ static func apply_power(power_type: PowerType, card: Card, deck: Deck = null):
 				PowerManager.set_hide_next(true)
 
 		PowerType.COPY:
-			#reste à implémenter le choix de la carte et à charger le card_data correspondant
-			card.set_card_data(preload("res://Scenes/Cards/new_moon.tres"))
-			card.burn_card()
-			card.card_animated_sprite.play("verso")
+			PowerManager.copy_card(card)
+			
 
 		PowerType.NONE:
 			pass

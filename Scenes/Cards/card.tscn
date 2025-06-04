@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://cevocbi5wmjfi"]
 
 [ext_resource type="Script" uid="uid://c6a2rsrvd616e" path="res://Scripts/Card.gd" id="1_ws51j"]
-[ext_resource type="SpriteFrames" uid="uid://byn67v5vdqqtl" path="res://Sprites/Sprite frames/full_moon_sprite_frames.tres" id="2_ylnsc"]
+[ext_resource type="SpriteFrames" uid="uid://cir8x311laogi" path="res://Sprites/Sprite frames/sun_sprite_frames.tres" id="2_se2ob"]
 [ext_resource type="SpriteFrames" uid="uid://dmpmyk4saqleh" path="res://Sprites/Sprite frames/surbrillance_sprite_frames.tres" id="4_se2ob"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_se2ob"]
@@ -12,8 +12,8 @@ collision_mask = 2
 script = ExtResource("1_ws51j")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-sprite_frames = ExtResource("2_ylnsc")
-animation = &"flip"
+sprite_frames = ExtResource("2_se2ob")
+animation = &"verso"
 
 [node name="SurbrillanceAnimatedSprite" type="AnimatedSprite2D" parent="."]
 sprite_frames = ExtResource("4_se2ob")

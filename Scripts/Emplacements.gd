@@ -9,7 +9,7 @@ extends Area2D
 @export var emp_col = 0
 @export var emp_row = 0
 
-var card_owned_name = ""
+var card_owned_name = null
 
 signal card_placed(emp_col, emp_row, card_name, emplacement)
 
@@ -27,7 +27,7 @@ func place_card(card_name):
 
 
 func is_free():
-	if card_owned_name == "":
+	if card_owned_name == null:
 		return true
 	else:
 		return false
