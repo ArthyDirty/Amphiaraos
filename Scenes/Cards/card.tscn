@@ -3,12 +3,13 @@
 [ext_resource type="Script" uid="uid://c6a2rsrvd616e" path="res://Scripts/Card.gd" id="1_ws51j"]
 [ext_resource type="SpriteFrames" uid="uid://gwwqi5kyvlfx" path="res://Sprites/Sprite frames/burned_shadow_sprite_frames.tres" id="2_se2ob"]
 [ext_resource type="SpriteFrames" uid="uid://dmpmyk4saqleh" path="res://Sprites/Sprite frames/surbrillance_sprite_frames.tres" id="4_se2ob"]
-[ext_resource type="SpriteFrames" uid="uid://fpfrx0fu2hmv" path="res://Sprites/Sprite frames/shadow_sprite_frames.tres" id="4_yyd00"]
+[ext_resource type="SpriteFrames" uid="uid://ci8kmltcarids" path="res://Sprites/Sprite frames/shadow_sprite_frames.tres" id="4_yyd00"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_se2ob"]
 size = Vector2(574, 1092)
 
 [node name="Card" type="Area2D" groups=["cartes"]]
+z_index = 3
 collision_mask = 2
 script = ExtResource("1_ws51j")
 
@@ -17,7 +18,6 @@ sprite_frames = ExtResource("2_se2ob")
 animation = &"shadow"
 
 [node name="SurbrillanceAnimatedSprite" type="AnimatedSprite2D" parent="."]
-z_index = -2
 sprite_frames = ExtResource("4_se2ob")
 
 [node name="Shadow" type="AnimatedSprite2D" parent="."]

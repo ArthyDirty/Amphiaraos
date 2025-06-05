@@ -33,6 +33,7 @@ signal card_flipped(card)
 # ============================================================
 
 func _ready():
+	last_pos = card.global_position
 	if data == null:
 		print("Pas de CardData assignée")
 		return
@@ -48,7 +49,9 @@ func _ready():
 		card_flipped.emit(card)
 	else:
 		card_animated_sprite.play("hidden")
-	last_pos = card.global_position
+	
+	
+	surbrillance_animated_sprite.play("surbrillance")
 
 
 func _load_sprite_frames():
@@ -73,6 +76,7 @@ func _load_sprite_frames():
 func _process(_delta):
 	if card_clicked and not card_placed and can_move:
 		_drag_card()
+		surbrillance_animated_sprite.play("default")
 	elif card_placed and hide_when_placed and not card_revealed:
 		card_animated_sprite.play("hide")
 		card_hidden = true
@@ -114,11 +118,11 @@ func _on_card_button_up():
 
 func _on_card_button_mouse_entered():
 	if not card_clicked and not card_placed and can_move:
-		pass
+		surbrillance_animated_sprite.play("surbrillance")
 
 
 func _on_card_button_mouse_exited():
-	pass
+	surbrillance_animated_sprite.play("default")
 
 
 # ============================================================
@@ -127,13 +131,12 @@ func _on_card_button_mouse_exited():
 
 func _place_card_with_animation():
 	var distance = card.global_position.distance_to(emplacement_pos)
-	var duration = distance / 100.0
+	var duration = distance / 100
 	var overshoot = (card.global_position - emplacement_pos) * 0.02
 	var overshoot_pos = emplacement_pos - overshoot
 	
 	var tween = create_tween()
-	tween.tween_property(card, "global_position", overshoot_pos, duration).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
-	tween.tween_property(card, "global_position", emplacement_pos, duration/4).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
+	tween.tween_property(card, "global_position", emplacement_pos, 0.4).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
 	tween.tween_property(card_animated_sprite, "position", Vector2.ZERO, duration/4).set_ease(Tween.EASE_IN_OUT)
 
 	
@@ -154,7 +157,7 @@ func _return_to_last_position():
 	tween.tween_property(card_animated_sprite, "position", Vector2.ZERO, duration/4).set_ease(Tween.EASE_IN_OUT)
 	tween.tween_property(card, "global_position", last_pos, duration/4).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
 
-	await get_tree().create_timer(duration/4).timeout
+	await get_tree().create_timer(duration + duration/2).timeout
 	shadow.visible = false
 
 
