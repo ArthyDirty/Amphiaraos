@@ -47,6 +47,7 @@ func copy_card(card : Card):
 
 
 func set_deck(new_deck: Deck) -> void:
+	hide_next = false
 	deck = new_deck
 	# Connecter ou reconnecter le signal, par exemple
 	if deck:

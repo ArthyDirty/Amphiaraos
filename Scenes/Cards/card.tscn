@@ -19,7 +19,6 @@ animation = &"shadow"
 [node name="SurbrillanceAnimatedSprite" type="AnimatedSprite2D" parent="."]
 z_index = -2
 sprite_frames = ExtResource("4_se2ob")
-frame_progress = 1.0
 
 [node name="Shadow" type="AnimatedSprite2D" parent="."]
 visible = false

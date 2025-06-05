@@ -44,11 +44,10 @@ func _ready():
 		card_animated_sprite.play("flip")
 		await card_animated_sprite.animation_finished
 		can_move = true
+		
 		card_flipped.emit(card)
 	else:
 		card_animated_sprite.play("hidden")
-
-	surbrillance_animated_sprite.play("default")
 	last_pos = card.global_position
 
 
@@ -78,6 +77,7 @@ func _process(_delta):
 		card_animated_sprite.play("hide")
 		card_hidden = true
 		hide_when_placed = false
+	
 
 func _drag_card():
 	var mouse_pos = get_viewport().get_mouse_position()
@@ -97,7 +97,6 @@ func _on_card_button_down():
 	dif_pos = card.global_position - get_viewport().get_mouse_position()
 	card.z_index = 5
 	shadow.visible = true
-	surbrillance_animated_sprite.play("default")
 
 
 func _on_card_button_up():
@@ -115,11 +114,11 @@ func _on_card_button_up():
 
 func _on_card_button_mouse_entered():
 	if not card_clicked and not card_placed and can_move:
-		surbrillance_animated_sprite.play("surbrillance")
+		pass
 
 
 func _on_card_button_mouse_exited():
-	surbrillance_animated_sprite.play("default")
+	pass
 
 
 # ============================================================
