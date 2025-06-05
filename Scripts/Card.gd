@@ -6,6 +6,8 @@ var data: CardData
 @onready var card: Card = $"."
 @onready var card_animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var surbrillance_animated_sprite: AnimatedSprite2D = $SurbrillanceAnimatedSprite
+@onready var shadow: AnimatedSprite2D = $Shadow
+
 
 var card_clicked = false
 var card_placed = false
@@ -54,6 +56,7 @@ func _process(_delta):
 	var mouse_pos = get_viewport().get_mouse_position()
 	if card_clicked and not card_placed and can_move:
 		card.global_position = mouse_pos + dif_pos
+		card_animated_sprite.position = - (card.global_position + Vector2(0, 500)) * 0.2
 	
 	if card_placed and hide_when_placed and not card_revealed:
 		card_animated_sprite.play("hide")
@@ -61,11 +64,16 @@ func _process(_delta):
 		hide_when_placed = false
 
 func _on_card_button_down():
+	if not can_move or card_placed:
+		return
 	card_clicked = true
 	last_pos = card.global_position
 	surbrillance_animated_sprite.play("default")
 	dif_pos = card.global_position - get_viewport().get_mouse_position()
 	card.z_index = 5
+	
+	shadow.visible = true
+	
 
 func _on_card_button_up():
 	card_clicked = false
@@ -86,6 +94,8 @@ func _on_card_button_up():
 		tween.tween_property(card, "global_position", emplacement_pos, 0.1).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
 		last_emplacement.place_card(data.name)
 		card_placed = true
+		shadow.visible = false
+		card_animated_sprite.position = Vector2(0, 0)
 	else:
 		# Animation fluide pour retour à la position initiale
 		var distance = card.global_position.distance_to(last_pos)
@@ -99,6 +109,8 @@ func _on_card_button_up():
 		tween.tween_property(card, "global_position", overshoot_pos, duration).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
 		# Étape 2 : revient à la vraie position
 		tween.tween_property(card, "global_position", last_pos, 0.1).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
+		shadow.visible = false
+		card_animated_sprite.position = Vector2(0, 0)
 		
 		surbrillance_animated_sprite.play("surbrillance") if can_move else surbrillance_animated_sprite.play("default")
 
