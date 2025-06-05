@@ -17,6 +17,7 @@ sprite_frames = ExtResource("2_se2ob")
 animation = &"verso"
 
 [node name="SurbrillanceAnimatedSprite" type="AnimatedSprite2D" parent="."]
+z_index = -2
 sprite_frames = ExtResource("4_se2ob")
 frame_progress = 1.0
 

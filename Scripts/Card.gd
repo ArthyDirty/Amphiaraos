@@ -80,7 +80,7 @@ func _process(_delta):
 func _drag_card():
 	var mouse_pos = get_viewport().get_mouse_position()
 	card.global_position = mouse_pos + dif_pos
-	card_animated_sprite.position = -(card.global_position + Vector2(0, 500)) * 0.2
+	card_animated_sprite.position = card.global_position * 0.2 * Vector2(1,1)
 
 
 # ============================================================
@@ -123,51 +123,61 @@ func _on_card_button_mouse_exited():
 
 func _place_card_with_animation():
 	var distance = card.global_position.distance_to(emplacement_pos)
-	var duration = distance / 3000.0
+	var duration = distance / 100.0
 	var overshoot = (card.global_position - emplacement_pos) * 0.02
 	var overshoot_pos = emplacement_pos - overshoot
-
+	
 	var tween = create_tween()
 	tween.tween_property(card, "global_position", overshoot_pos, duration).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
-	tween.tween_property(card, "global_position", emplacement_pos, 0.1).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
+	tween.tween_property(card, "global_position", emplacement_pos, duration/4).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
+	tween.tween_property(card_animated_sprite, "position", Vector2.ZERO, duration/4).set_ease(Tween.EASE_IN_OUT)
 
+	
+	await get_tree().create_timer(duration + duration/2).timeout
+	shadow.visible = false
 	last_emplacement.place_card(data.name)
 	card_placed = true
-	shadow.visible = false
-	card_animated_sprite.position = Vector2.ZERO
 
 
 func _return_to_last_position():
 	var distance = card.global_position.distance_to(last_pos)
 	var duration = distance / 3000.0
-	var overshoot = (card.global_position - last_pos) * 0.02
+	var overshoot = (card.global_position - last_pos) * 0.01
 	var overshoot_pos = last_pos - overshoot
+	
+	print(duration)
+	#Engine.set_time_scale(0.1)
 
 	var tween = create_tween()
 	tween.tween_property(card, "global_position", overshoot_pos, duration).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
-	tween.tween_property(card, "global_position", last_pos, 0.1).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
+	tween.tween_property(card_animated_sprite, "position", Vector2.ZERO, duration/4).set_ease(Tween.EASE_IN_OUT)
+	tween.tween_property(card, "global_position", last_pos, duration/4).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
 
+	await get_tree().create_timer(duration/4).timeout
 	shadow.visible = false
-	card_animated_sprite.position = Vector2.ZERO
+	
+	#Engine.set_time_scale(1)
 
-	if can_move:
-		surbrillance_animated_sprite.play("surbrillance")
-	else:
-		surbrillance_animated_sprite.play("default")
+	#if can_move:
+		#surbrillance_animated_sprite.play("surbrillance")
+	#else:
+		#surbrillance_animated_sprite.play("default")
 
 
 # ============================================================
 # ============= 5. Interaction avec l’emplacement ============
 # ============================================================
 
-func _on_emplacement_entered(emplacement):
+func _on_emplacement_entered(emplacement: Emplacement):
 	if emplacement.is_free():
 		emplacement_hover = true
+		emplacement.animated_sprite.play("card_hover")
 		emplacement_pos = emplacement.global_position
 		last_emplacement = emplacement
 
-func _on_emplacement_exited(_emplacement):
+func _on_emplacement_exited(emplacement):
 	emplacement_hover = false
+	emplacement.animated_sprite.play("default")
 
 
 # ============================================================

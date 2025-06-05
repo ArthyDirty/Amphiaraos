@@ -1,7 +1,11 @@
-[gd_resource type="SpriteFrames" load_steps=7 format=3 uid="uid://6c2oj4du7k8t"]
+[gd_resource type="SpriteFrames" load_steps=8 format=3 uid="uid://6c2oj4du7k8t"]
 
 [ext_resource type="Texture2D" uid="uid://x6sp4blnx1c0" path="res://Sprites/Cartes.png" id="1_wh0mj"]
 [ext_resource type="Texture2D" uid="uid://lb8d1uexayog" path="res://Sprites/Effets.png" id="2_32dgg"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wh0mj"]
+atlas = ExtResource("1_wh0mj")
+region = Rect2(1360, 2400, 680, 1200)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_k6f5d"]
 atlas = ExtResource("1_wh0mj")
@@ -21,6 +25,14 @@ region = Rect2(1360, 0, 1360, 2400)
 
 [resource]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wh0mj")
+}],
+"loop": false,
+"name": &"card_hover",
+"speed": 5.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_k6f5d")

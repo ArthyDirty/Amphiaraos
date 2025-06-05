@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://qi4wy48xqd82"]
+[gd_scene load_steps=6 format=3 uid="uid://qi4wy48xqd82"]
 
 [ext_resource type="Texture2D" uid="uid://clgxhavyx8tfy" path="res://Sprites/Plateau.png" id="1_wqnu0"]
 [ext_resource type="PackedScene" uid="uid://yflcd83ftsjq" path="res://Scenes/Utilities/emplacement.tscn" id="3_1v8e7"]
 [ext_resource type="PackedScene" uid="uid://d14t5h65ng55w" path="res://Scenes/Decks/deck.tscn" id="3_128kh"]
 [ext_resource type="Resource" uid="uid://cuniqls2vom7r" path="res://Scenes/Decks/moon_deck.tres" id="4_128kh"]
+[ext_resource type="PackedScene" uid="uid://dl7iidt0o3jsh" path="res://Scenes/Utilities/reset_level.tscn" id="5_adwds"]
 
 [node name="Plateau" type="Node2D"]
 
@@ -54,3 +55,6 @@ emp_row = 2
 
 [node name="Deck" parent="." instance=ExtResource("3_128kh")]
 deck_data = ExtResource("4_128kh")
+
+[node name="ResetLevel" parent="." instance=ExtResource("5_adwds")]
+position = Vector2(0, 410)

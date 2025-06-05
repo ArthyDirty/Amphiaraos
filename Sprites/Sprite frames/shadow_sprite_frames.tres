@@ -2,15 +2,15 @@
 
 [ext_resource type="Texture2D" uid="uid://x6sp4blnx1c0" path="res://Sprites/Cartes.png" id="1_t3xdu"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_2ku21"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_8r3yp"]
 atlas = ExtResource("1_t3xdu")
-region = Rect2(1360, 2400, 680, 1200)
+region = Rect2(1360, 3600, 680, 1200)
 
 [resource]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_2ku21")
+"texture": SubResource("AtlasTexture_8r3yp")
 }],
 "loop": false,
 "name": &"shadow",

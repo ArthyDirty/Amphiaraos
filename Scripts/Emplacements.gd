@@ -23,6 +23,7 @@ func get_row():
 
 func place_card(card_name):
 	card_owned_name = card_name
+	animated_sprite.play("default")
 	card_placed.emit(emp_col, emp_row, card_owned_name, emplacement)
 
 
