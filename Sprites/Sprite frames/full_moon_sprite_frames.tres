@@ -103,9 +103,9 @@ region = Rect2(0, 4800, 680, 1200)
 atlas = ExtResource("2_4dt18")
 region = Rect2(0, 0, 1360, 2400)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_n02fc"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_dh4tf"]
 atlas = ExtResource("1_vqaxu")
-region = Rect2(1360, 0, 680, 1200)
+region = Rect2(4760, 0, 680, 1200)
 
 [resource]
 animations = [{
@@ -214,7 +214,7 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_n02fc")
+"texture": SubResource("AtlasTexture_dh4tf")
 }],
 "loop": false,
 "name": &"verso",

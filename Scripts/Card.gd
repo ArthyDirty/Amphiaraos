@@ -40,8 +40,10 @@ func _ready():
 	_load_sprite_frames()
 
 	if !card_hidden:
+		can_move = false
 		card_animated_sprite.play("flip")
 		await card_animated_sprite.animation_finished
+		can_move = true
 		card_flipped.emit(card)
 	else:
 		card_animated_sprite.play("hidden")
@@ -101,7 +103,10 @@ func _on_card_button_down():
 func _on_card_button_up():
 	card_clicked = false
 	card.z_index = 3
-
+	
+	if last_emplacement:
+		last_emplacement.animated_sprite.play("default")
+	
 	if emplacement_hover:
 		_place_card_with_animation()
 	else:
@@ -144,9 +149,6 @@ func _return_to_last_position():
 	var duration = distance / 3000.0
 	var overshoot = (card.global_position - last_pos) * 0.01
 	var overshoot_pos = last_pos - overshoot
-	
-	print(duration)
-	#Engine.set_time_scale(0.1)
 
 	var tween = create_tween()
 	tween.tween_property(card, "global_position", overshoot_pos, duration).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
@@ -155,13 +157,6 @@ func _return_to_last_position():
 
 	await get_tree().create_timer(duration/4).timeout
 	shadow.visible = false
-	
-	#Engine.set_time_scale(1)
-
-	#if can_move:
-		#surbrillance_animated_sprite.play("surbrillance")
-	#else:
-		#surbrillance_animated_sprite.play("default")
 
 
 # ============================================================
@@ -169,7 +164,7 @@ func _return_to_last_position():
 # ============================================================
 
 func _on_emplacement_entered(emplacement: Emplacement):
-	if emplacement.is_free():
+	if emplacement.is_free() and card_clicked:
 		emplacement_hover = true
 		emplacement.animated_sprite.play("card_hover")
 		emplacement_pos = emplacement.global_position

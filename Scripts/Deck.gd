@@ -16,6 +16,7 @@ signal card_added(card)
 
 func _ready() -> void:
 	PowerManager.set_deck(self)
+	WinManager.set_deck(self)
 	
 	if deck_data and !deck_data.cards.is_empty():
 		cards = deck_data.get_deck_copy()
