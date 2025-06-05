@@ -30,6 +30,5 @@ func _on_mouse_exited() -> void:
 
 
 func _on_button_up() -> void:
-	print("copy of ", card_to_copy)
 	copied_card.emit(card_to_copy)
 	queue_free()

@@ -12,6 +12,7 @@ var card_placed = false
 var card_hidden = false
 var card_revealed = false
 var hide_when_placed = false
+var can_move = true
 
 var emplacement_hover = false
 var emplacement_pos
@@ -51,7 +52,7 @@ func _ready():
 
 func _process(_delta):
 	var mouse_pos = get_viewport().get_mouse_position()
-	if card_clicked and not card_placed:
+	if card_clicked and not card_placed and can_move:
 		card.global_position = mouse_pos + dif_pos
 	
 	if card_placed and hide_when_placed and not card_revealed:
@@ -71,17 +72,38 @@ func _on_card_button_up():
 	card.z_index = 3
 	
 	if emplacement_hover:
-		card.global_position = emplacement_pos
+		# Animation fluide pour retour à la position initiale
+		var distance = card.global_position.distance_to(emplacement_pos)
+		var speed = 3000  # pixels par seconde, ajuste à ta convenance
+		var duration = distance / speed
+		
+		var tween = create_tween()
+		# Étape 1 : va un peu plus loin que la position cible
+		var overshoot = (card.global_position - emplacement_pos) * 0.02
+		var overshoot_pos = emplacement_pos - overshoot
+		tween.tween_property(card, "global_position", overshoot_pos, duration).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
+		# Étape 2 : revient à la vraie position
+		tween.tween_property(card, "global_position", emplacement_pos, 0.1).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
 		last_emplacement.place_card(data.name)
 		card_placed = true
 	else:
 		# Animation fluide pour retour à la position initiale
+		var distance = card.global_position.distance_to(last_pos)
+		var speed = 3000  # pixels par seconde, ajuste à ta convenance
+		var duration = distance / speed
+		
 		var tween = create_tween()
-		tween.tween_property(card, "global_position", last_pos, 0.2)
-		surbrillance_animated_sprite.play("surbrillance")
+		# Étape 1 : va un peu plus loin que la position cible
+		var overshoot = (card.global_position - last_pos) * 0.02
+		var overshoot_pos = last_pos - overshoot
+		tween.tween_property(card, "global_position", overshoot_pos, duration).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
+		# Étape 2 : revient à la vraie position
+		tween.tween_property(card, "global_position", last_pos, 0.1).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
+		
+		surbrillance_animated_sprite.play("surbrillance") if can_move else surbrillance_animated_sprite.play("default")
 
 func _on_card_button_mouse_entered():
-	if not card_clicked and not card_placed:
+	if not card_clicked and not card_placed and can_move:
 		surbrillance_animated_sprite.play("surbrillance")
 
 func _on_card_button_mouse_exited():
@@ -116,7 +138,6 @@ func burn_card():
 
 func set_card_data(card_data: CardData) -> void:
 	data = card_data
-	
 	if card_animated_sprite:
 		if data == null:
 			print("Pas de CardData assignée")

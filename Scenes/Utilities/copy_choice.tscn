@@ -1,7 +1,7 @@
 [gd_scene load_steps=8 format=3 uid="uid://cs0bkjbbpfk43"]
 
 [ext_resource type="Texture2D" uid="uid://cu0t6dgoyd1tn" path="res://Sprites/Sprite_SunChoice.png" id="1_n5f0n"]
-[ext_resource type="Script" uid="uid://h5cl0ax1bun0" path="res://Scenes/Utilities/copy_choice.gd" id="1_omuk8"]
+[ext_resource type="Script" uid="uid://h5cl0ax1bun0" path="res://Scripts/CopyChoice.gd" id="1_omuk8"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_omuk8"]
 atlas = ExtResource("1_n5f0n")
