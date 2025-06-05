@@ -1,7 +1,27 @@
-[gd_resource type="SpriteFrames" load_steps=29 format=3 uid="uid://byn67v5vdqqtl"]
+[gd_resource type="SpriteFrames" load_steps=34 format=3 uid="uid://byn67v5vdqqtl"]
 
 [ext_resource type="Texture2D" uid="uid://x6sp4blnx1c0" path="res://Sprites/Cartes.png" id="1_vqaxu"]
 [ext_resource type="Texture2D" uid="uid://lb8d1uexayog" path="res://Sprites/Effets.png" id="2_4dt18"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_n02fc"]
+atlas = ExtResource("1_vqaxu")
+region = Rect2(5440, 0, 680, 1200)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dh4tf"]
+atlas = ExtResource("1_vqaxu")
+region = Rect2(5440, 1200, 680, 1200)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_33aii"]
+atlas = ExtResource("1_vqaxu")
+region = Rect2(5440, 2400, 680, 1200)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_m0rhh"]
+atlas = ExtResource("1_vqaxu")
+region = Rect2(5440, 3600, 680, 1200)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oksl4"]
+atlas = ExtResource("1_vqaxu")
+region = Rect2(5440, 4800, 680, 1200)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_yj7st"]
 atlas = ExtResource("1_vqaxu")
@@ -103,12 +123,32 @@ region = Rect2(0, 4800, 680, 1200)
 atlas = ExtResource("2_4dt18")
 region = Rect2(0, 0, 1360, 2400)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_dh4tf"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_8ubla"]
 atlas = ExtResource("1_vqaxu")
-region = Rect2(4760, 0, 680, 1200)
+region = Rect2(1360, 0, 680, 1200)
 
 [resource]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_n02fc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dh4tf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_33aii")
+}, {
+"duration": 3.0,
+"texture": SubResource("AtlasTexture_m0rhh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_oksl4")
+}],
+"loop": false,
+"name": &"burned",
+"speed": 3.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_yj7st")
@@ -214,7 +254,7 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_dh4tf")
+"texture": SubResource("AtlasTexture_8ubla")
 }],
 "loop": false,
 "name": &"verso",

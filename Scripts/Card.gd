@@ -196,6 +196,7 @@ func burn_card():
 	burn_sprite.z_index = 6
 	add_child(burn_sprite)
 	burn_sprite.play("burn")
+	shadow.frames = preload("res://Sprites/Sprite frames/burned_shadow_sprite_frames.tres")
 
 
 # ============================================================

@@ -41,7 +41,7 @@ func copy_card(card : Card):
 	# transforme et brule la carte en la carte selectionnée (pour l'instant blank_card par défaut)
 	card.set_card_data(card_data)
 	card.burn_card()
-	card.card_animated_sprite.play("verso")
+	card.card_animated_sprite.play("burned")
 	
 	card.can_move = true
 

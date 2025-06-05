@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://cevocbi5wmjfi"]
 
 [ext_resource type="Script" uid="uid://c6a2rsrvd616e" path="res://Scripts/Card.gd" id="1_ws51j"]
-[ext_resource type="SpriteFrames" uid="uid://byn67v5vdqqtl" path="res://Sprites/Sprite frames/full_moon_sprite_frames.tres" id="2_se2ob"]
+[ext_resource type="SpriteFrames" uid="uid://gwwqi5kyvlfx" path="res://Sprites/Sprite frames/burned_shadow_sprite_frames.tres" id="2_se2ob"]
 [ext_resource type="SpriteFrames" uid="uid://dmpmyk4saqleh" path="res://Sprites/Sprite frames/surbrillance_sprite_frames.tres" id="4_se2ob"]
 [ext_resource type="SpriteFrames" uid="uid://fpfrx0fu2hmv" path="res://Sprites/Sprite frames/shadow_sprite_frames.tres" id="4_yyd00"]
 
@@ -14,7 +14,7 @@ script = ExtResource("1_ws51j")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = ExtResource("2_se2ob")
-animation = &"verso"
+animation = &"shadow"
 
 [node name="SurbrillanceAnimatedSprite" type="AnimatedSprite2D" parent="."]
 z_index = -2
