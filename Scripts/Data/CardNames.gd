@@ -7,5 +7,6 @@ enum CardName {
 	FULL_MOON,
 	HALF_MOON,
 	NEW_MOON,
-	SUN
+	SUN,
+	BLINDING_CURSE
 }

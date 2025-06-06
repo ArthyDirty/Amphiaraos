@@ -7,16 +7,18 @@ var Emplacements
 var col_max = 0
 var row_max = 0
 
-var card_in_game = []
+var cards_in_game = []
 var jeu = []
 var jeu_emplacements = []
+var won = false
 
 
 # appelée lorsqu'une carte est placée sur un emplacement
 func _on_card_placed(emp_col, emp_row, card_name, node: Emplacement):
 	jeu[emp_col][emp_row] = card_name
 	jeu_emplacements[emp_col][emp_row] = node
-	_check_alignement()
+	if !won:
+		_check_alignement()
 
 #verifie les alignements plus grand que 3
 func _check_alignement():
@@ -27,11 +29,12 @@ func _check_alignement():
 
 
 func _on_card_drawn(card_drawn):
-	card_in_game.append(card_drawn)
+	cards_in_game.append(card_drawn)
 
 
 func win():
-	for card in card_in_game:
+	won = true 
+	for card in cards_in_game:
 		card.show_card()
 
 #verifie si n mêmes cartes sont alignées
@@ -93,9 +96,10 @@ func cleanup():
 func reset_win_manager():
 	col_max = 0
 	row_max = 0
-	card_in_game = []
+	cards_in_game = []
 	jeu = []
 	jeu_emplacements = []
+	won = false
 	
 	Emplacements = get_tree().get_nodes_in_group("emplacements")
 	for element in Emplacements:

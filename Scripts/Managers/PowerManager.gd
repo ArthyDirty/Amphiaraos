@@ -5,13 +5,14 @@ var deck: Deck = null
 
 var hide_next = false
 
+var cards_in_game: Array[Card]
 
 func _on_card_drawn(card_drawn : Card):
+	cards_in_game.append(card_drawn)
 	if hide_next:
 		hide_next = false
 		card_drawn.hide_card_on_draw()
 		return
-	
 	card_drawn.card_flipped.connect(_on_card_flipped)
 
 
@@ -27,6 +28,11 @@ func set_hide_next(state: bool):
 
 func should_hide_next() -> bool:
 	return hide_next
+
+
+func hide_placed_cards():
+	for card in cards_in_game:
+		card.hide_card()
 
 
 func copy_card(card : Card):
@@ -47,6 +53,7 @@ func copy_card(card : Card):
 
 
 func set_deck(new_deck: Deck) -> void:
+	cards_in_game = []
 	hide_next = false
 	deck = new_deck
 	# Connecter ou reconnecter le signal, par exemple

@@ -8,14 +8,17 @@ var data: CardData
 @onready var card_animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var surbrillance_animated_sprite: AnimatedSprite2D = $SurbrillanceAnimatedSprite
 @onready var shadow: AnimatedSprite2D = $Shadow
+@onready var card_button: Button = $CardButton
+
 
 # === États internes ===
 var card_clicked = false
 var card_placed = false
 var card_hidden = false
 var card_revealed = false
-var hide_when_placed = false
+var hide = false
 var can_move = true
+var card_moving = false
 
 # === Données de placement ===
 var emplacement_hover = false
@@ -23,6 +26,7 @@ var emplacement_pos
 var last_emplacement
 var last_pos
 var dif_pos
+var mouse_hover = false
 
 # === Signaux ===
 signal card_flipped(card)
@@ -50,8 +54,6 @@ func _ready():
 	else:
 		card_animated_sprite.play("hidden")
 	
-	
-	surbrillance_animated_sprite.play("surbrillance")
 
 
 func _load_sprite_frames():
@@ -76,11 +78,18 @@ func _load_sprite_frames():
 func _process(_delta):
 	if card_clicked and not card_placed and can_move:
 		_drag_card()
-		surbrillance_animated_sprite.play("default")
-	elif card_placed and hide_when_placed and not card_revealed:
+	
+	if surbrillance_animated_sprite:
+		if card_moving or card_placed or !card_button.get_rect().has_point(to_local(get_global_mouse_position())):
+			surbrillance_animated_sprite.play("default")
+		else:
+			surbrillance_animated_sprite.play("surbrillance")
+	
+	
+	if card_placed and hide and not card_revealed:
 		card_animated_sprite.play("hide")
 		card_hidden = true
-		hide_when_placed = false
+		hide = false
 	
 
 func _drag_card():
@@ -101,9 +110,12 @@ func _on_card_button_down():
 	dif_pos = card.global_position - get_viewport().get_mouse_position()
 	card.z_index = 5
 	shadow.visible = true
+	card_moving = true
 
 
 func _on_card_button_up():
+	if not can_move or card_placed:
+		return
 	card_clicked = false
 	card.z_index = 3
 	
@@ -117,12 +129,11 @@ func _on_card_button_up():
 
 
 func _on_card_button_mouse_entered():
-	if not card_clicked and not card_placed and can_move:
-		surbrillance_animated_sprite.play("surbrillance")
+	pass
 
 
 func _on_card_button_mouse_exited():
-	surbrillance_animated_sprite.play("default")
+	pass
 
 
 # ============================================================
@@ -144,6 +155,7 @@ func _place_card_with_animation():
 	shadow.visible = false
 	last_emplacement.place_card(data.name)
 	card_placed = true
+	card_moving = false
 
 
 func _return_to_last_position():
@@ -159,6 +171,8 @@ func _return_to_last_position():
 
 	await get_tree().create_timer(duration + duration/2).timeout
 	shadow.visible = false
+	card_moving = false
+	
 
 
 # ============================================================
@@ -184,8 +198,9 @@ func _on_emplacement_exited(emplacement):
 func hide_card_on_draw():
 	card_hidden = true
 
-func hide_card_when_placed():
-	hide_when_placed = true
+func hide_card():
+	if !card_hidden:
+		hide = true
 
 func show_card():
 	card_revealed = true
@@ -198,7 +213,6 @@ func burn_card():
 	burn_sprite.z_index = 6
 	add_child(burn_sprite)
 	burn_sprite.play("burn")
-	shadow.frames = preload("res://Sprites/Sprite frames/burned_shadow_sprite_frames.tres")
 
 
 # ============================================================

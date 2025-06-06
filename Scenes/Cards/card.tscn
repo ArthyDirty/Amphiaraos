@@ -1,9 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://cevocbi5wmjfi"]
+[gd_scene load_steps=7 format=3 uid="uid://cevocbi5wmjfi"]
 
 [ext_resource type="Script" uid="uid://c6a2rsrvd616e" path="res://Scripts/Card.gd" id="1_ws51j"]
-[ext_resource type="SpriteFrames" uid="uid://gwwqi5kyvlfx" path="res://Sprites/Sprite frames/burned_shadow_sprite_frames.tres" id="2_se2ob"]
+[ext_resource type="SpriteFrames" uid="uid://bxyy3uqjkgih0" path="res://Sprites/Sprite frames/blank_card_sprite_frames.tres" id="2_yyd00"]
+[ext_resource type="Script" uid="uid://duk7mshxoklv" path="res://Scenes/Test/dissolve_card.gd" id="3_3rpue"]
 [ext_resource type="SpriteFrames" uid="uid://dmpmyk4saqleh" path="res://Sprites/Sprite frames/surbrillance_sprite_frames.tres" id="4_se2ob"]
-[ext_resource type="SpriteFrames" uid="uid://ci8kmltcarids" path="res://Sprites/Sprite frames/shadow_sprite_frames.tres" id="4_yyd00"]
+[ext_resource type="SpriteFrames" uid="uid://fpfrx0fu2hmv" path="res://Sprites/Sprite frames/shadow_sprite_frames.tres" id="4_yyd00"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_se2ob"]
 size = Vector2(574, 1092)
@@ -14,8 +15,9 @@ collision_mask = 2
 script = ExtResource("1_ws51j")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-sprite_frames = ExtResource("2_se2ob")
-animation = &"shadow"
+sprite_frames = ExtResource("2_yyd00")
+animation = &"flip"
+script = ExtResource("3_3rpue")
 
 [node name="SurbrillanceAnimatedSprite" type="AnimatedSprite2D" parent="."]
 sprite_frames = ExtResource("4_se2ob")
