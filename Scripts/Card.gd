@@ -80,7 +80,7 @@ func _process(_delta):
 		_drag_card()
 	
 	if surbrillance_animated_sprite:
-		if card_moving or card_placed or !card_button.get_rect().has_point(to_local(get_global_mouse_position())):
+		if not can_move or card_moving or card_placed or !card_button.get_rect().has_point(to_local(get_global_mouse_position())):
 			surbrillance_animated_sprite.play("default")
 		else:
 			surbrillance_animated_sprite.play("surbrillance")

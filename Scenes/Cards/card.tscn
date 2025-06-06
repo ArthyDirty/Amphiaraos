@@ -4,7 +4,7 @@
 [ext_resource type="SpriteFrames" uid="uid://bxyy3uqjkgih0" path="res://Sprites/Sprite frames/blank_card_sprite_frames.tres" id="2_yyd00"]
 [ext_resource type="Script" uid="uid://duk7mshxoklv" path="res://Scenes/Test/dissolve_card.gd" id="3_3rpue"]
 [ext_resource type="SpriteFrames" uid="uid://dmpmyk4saqleh" path="res://Sprites/Sprite frames/surbrillance_sprite_frames.tres" id="4_se2ob"]
-[ext_resource type="SpriteFrames" uid="uid://fpfrx0fu2hmv" path="res://Sprites/Sprite frames/shadow_sprite_frames.tres" id="4_yyd00"]
+[ext_resource type="SpriteFrames" uid="uid://ci8kmltcarids" path="res://Sprites/Sprite frames/shadow_sprite_frames.tres" id="4_yyd00"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_se2ob"]
 size = Vector2(574, 1092)
