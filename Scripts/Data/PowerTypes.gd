@@ -31,6 +31,7 @@ static func apply_power(power_type: PowerType, card: Card, deck: Deck = null):
 			card.card_animated_sprite.material = preload("res://Scenes/Test/dissolve_test.tres")
 			card.shadow.material = preload("res://Scenes/Test/dissolve_test.tres")
 			card.card_animated_sprite.play_dissolve()
+			WinManager.cards_in_game.pop_back()
 
 		PowerType.NONE:
 			pass

@@ -11,6 +11,9 @@ const card_scene = preload("res://Scenes/Cards/card.tscn")
 var cards: Array[CardData]
 var deck_empty = true
 
+var can_draw := true
+@export var draw_delay := 1.0  # secondes entre deux tirages
+
 signal card_drawn(card)
 signal card_added(card)
 
@@ -26,7 +29,8 @@ func _ready() -> void:
 
 
 func _on_button_up() -> void:
-	draw_card()
+	if can_draw:
+		draw_card()
 
 
 func _on_button_mouse_entered() -> void:
@@ -57,6 +61,9 @@ func draw_card(card: CardData = null):
 	if cards.is_empty():
 		deck_empty = true
 		deck_animated_sprite.play("empty")
+	
+	await get_tree().create_timer(draw_delay).timeout
+	can_draw = true  # autoriser à tirer une nouvelle carte
 	
 	return card_instance
 
