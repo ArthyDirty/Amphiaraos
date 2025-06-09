@@ -8,4 +8,5 @@ func _on_button_down() -> void:
 
 func _on_button_up() -> void:
 	WinManager.cleanup()
+	ScoreManager.cleanup()
 	get_tree().reload_current_scene()

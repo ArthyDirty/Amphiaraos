@@ -10,13 +10,17 @@ var row_max = 0
 var cards_in_game = []
 var jeu = []
 var jeu_emplacements = []
+var jeu_carte = []
 var won = false
+
+signal score_changed(score)
 
 
 # appelée lorsqu'une carte est placée sur un emplacement
-func _on_card_placed(emp_col, emp_row, card_name, node: Emplacement):
+func _on_card_placed(emp_col, emp_row, card, card_name, node: Emplacement):
 	jeu[emp_col][emp_row] = card_name
 	jeu_emplacements[emp_col][emp_row] = node
+	jeu_carte[emp_col][emp_row] = card
 	if !won:
 		_check_alignement()
 
@@ -32,10 +36,10 @@ func _on_card_drawn(card_drawn):
 	cards_in_game.append(card_drawn)
 
 
-func win():
-	won = true 
-	for card in cards_in_game:
-		card.show_card()
+#func win():
+	#won = true 
+	#for card in cards_in_game:
+		#card.show_card()
 
 #verifie si n mêmes cartes sont alignées
 func _check_n_align(n_align: int = 3) -> bool:
@@ -45,6 +49,10 @@ func _check_n_align(n_align: int = 3) -> bool:
 		Vector2(1, 1),   # ↘ diagonale
 		Vector2(-1, 1),  # ↙ diagonale inversée
 	]
+
+	var alignment = 0
+	var score = 0
+	var aligned_positions: Array[Vector2] = []
 
 	for dir in directions:
 		var dx = int(dir.x)
@@ -64,7 +72,7 @@ func _check_n_align(n_align: int = 3) -> bool:
 					if cx < 0 or cy < 0 or cx > col_max or cy > row_max:
 						break
 
-					var card = jeu[cx][cy]
+					var card: CardNames.CardName = jeu[cx][cy]
 
 					if card == last_card and card != CardNames.CardName.BLANK:
 						count += 1
@@ -72,9 +80,10 @@ func _check_n_align(n_align: int = 3) -> bool:
 						if count >= n_align:
 							for k in range(n_align):
 								var pos = positions[-(k + 1)]
-								jeu_emplacements[pos.x][pos.y].animated_sprite.play("three_in_row")
-							win()
-							return true
+								if pos not in aligned_positions:
+									aligned_positions.append(pos)
+									score += jeu_carte[pos.x][pos.y].data.points
+							alignment += 1
 					else:
 						last_card = card
 						count = 1 if card != CardNames.CardName.BLANK else 0
@@ -82,7 +91,20 @@ func _check_n_align(n_align: int = 3) -> bool:
 
 					i += 1
 
-	return false
+	# Libération des emplacements après détection
+	for pos in aligned_positions:
+		jeu_emplacements[pos.x][pos.y].free_emplacement()
+		jeu_emplacements[pos.x][pos.y] = null
+		jeu[pos.x][pos.y] = CardNames.CardName.BLANK
+		jeu_carte[pos.x][pos.y] = 0
+
+	
+	if score > 0:
+		print(alignment * score)
+		score_changed.emit(alignment * score)
+	
+	return score > 0
+
 
 
 func cleanup():
@@ -99,6 +121,7 @@ func reset_win_manager():
 	cards_in_game = []
 	jeu = []
 	jeu_emplacements = []
+	jeu_carte = []
 	won = false
 	
 	Emplacements = get_tree().get_nodes_in_group("emplacements")
@@ -122,6 +145,12 @@ func reset_win_manager():
 		for j in range(row_max + 1):
 			col.append(CardNames.CardName.BLANK)
 		jeu_emplacements.append(col)
+	
+	for i in range(col_max + 1):
+		var col = []
+		for j in range(row_max + 1):
+			col.append(0)
+		jeu_carte.append(col)
 
 
 func set_deck(new_deck: Deck) -> void:

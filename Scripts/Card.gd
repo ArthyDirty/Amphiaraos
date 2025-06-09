@@ -114,6 +114,11 @@ func _on_card_button_down():
 
 
 func _on_card_button_up():
+	if card_placed and not card_hidden:
+		# quand on clique sur la carte si elle est placée et face visible nous renvois ses data
+		# peut être utile pour copy_card ou autre pouvoir 
+		print(data) 
+	
 	if not can_move or card_placed:
 		return
 	card_clicked = false
@@ -153,7 +158,7 @@ func _place_card_with_animation():
 	
 	await get_tree().create_timer(duration + duration/2).timeout
 	shadow.visible = false
-	last_emplacement.place_card(data.name)
+	last_emplacement.place_card(self)
 	card_placed = true
 	card_moving = false
 

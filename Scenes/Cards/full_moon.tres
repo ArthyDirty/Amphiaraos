@@ -6,6 +6,7 @@
 script = ExtResource("1_yqdqh")
 name = 1
 power_type = 0
+points = 20
 sprite_frames_path = "res://Sprites/Sprite frames/full_moon_sprite_frames.tres"
 surbrillance_sprite_frames_path = "res://Sprites/Sprite frames/surbrillance_sprite_frames.tres"
 metadata/_custom_type_script = "uid://bkbor60wfe7wr"

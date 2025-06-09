@@ -19,6 +19,7 @@ config/icon="uid://c2a40hiur2uml"
 
 PowerManager="*res://Scripts/Managers/PowerManager.gd"
 WinManager="*res://Scripts/Managers/WinManager.gd"
+ScoreManager="*res://Scripts/Managers/ScoreManager.gd"
 
 [display]
 

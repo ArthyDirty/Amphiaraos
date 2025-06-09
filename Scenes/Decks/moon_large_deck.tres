@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="DeckData" load_steps=8 format=3 uid="uid://cjmfvbnc6av4j"]
+
+[ext_resource type="Script" uid="uid://bkbor60wfe7wr" path="res://Scripts/Data/CardData.gd" id="1_wdkuu"]
+[ext_resource type="Resource" uid="uid://b8a38c3k6jw13" path="res://Scenes/Cards/new_moon.tres" id="2_p3rpx"]
+[ext_resource type="Resource" uid="uid://mac3sf3xdxup" path="res://Scenes/Cards/half_moon.tres" id="3_8ycbh"]
+[ext_resource type="Resource" uid="uid://dhl40n5y1xxf0" path="res://Scenes/Cards/full_moon.tres" id="4_cig8j"]
+[ext_resource type="Resource" uid="uid://cfbtehybyshn6" path="res://Scenes/Cards/sun.tres" id="5_mx2ci"]
+[ext_resource type="Resource" uid="uid://cr2ab0s0s8d2r" path="res://Scenes/Cards/blinding_curse.tres" id="6_7aya6"]
+[ext_resource type="Script" uid="uid://bwc1mk78xwfdd" path="res://Scripts/Data/DeckData.gd" id="7_f1q0o"]
+
+[resource]
+script = ExtResource("7_f1q0o")
+deck_name = "moon_large_deck"
+cards = Array[ExtResource("1_wdkuu")]([ExtResource("2_p3rpx"), ExtResource("2_p3rpx"), ExtResource("2_p3rpx"), ExtResource("3_8ycbh"), ExtResource("3_8ycbh"), ExtResource("3_8ycbh"), ExtResource("4_cig8j"), ExtResource("4_cig8j"), ExtResource("4_cig8j"), ExtResource("5_mx2ci"), ExtResource("6_7aya6"), ExtResource("4_cig8j"), ExtResource("4_cig8j"), ExtResource("4_cig8j"), ExtResource("4_cig8j"), ExtResource("4_cig8j"), ExtResource("4_cig8j"), ExtResource("2_p3rpx"), ExtResource("2_p3rpx"), ExtResource("2_p3rpx"), ExtResource("5_mx2ci")])
+metadata/_custom_type_script = "uid://bwc1mk78xwfdd"

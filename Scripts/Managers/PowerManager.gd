@@ -32,7 +32,8 @@ func should_hide_next() -> bool:
 
 func hide_placed_cards():
 	for card in cards_in_game:
-		card.hide_card()
+		if card:
+			card.hide_card()
 
 
 func copy_card(card : Card):

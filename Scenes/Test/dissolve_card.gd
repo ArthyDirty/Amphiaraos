@@ -2,7 +2,7 @@ extends Node2D
 
 var dissolve = false
 var dissolve_state: float = 0.0
-var speed: float = 100.0 / 2.0  # 100 unités en 5 secondes
+var speed: float = 100.0 / 2.5  # 100 unités en 5 secondes
 
 var shadow : AnimatedSprite2D
 var surbrillance : AnimatedSprite2D
@@ -24,10 +24,11 @@ func set_dissolve_state(value: float):
 	material.set_shader_parameter("dissolve_state", value)
 	shadow.material.set_shader_parameter("dissolve_state", value)
 
-func play_dissolve():
+func play_dissolve(fast = false):
 	dissolve_state = 0.0
 	set_dissolve_state(dissolve_state)
+	if fast:
+		await get_tree().create_timer(0.5).timeout
 	surbrillance.queue_free()
-	await get_tree().create_timer(0.5).timeout
 	dissolve = true
 	
