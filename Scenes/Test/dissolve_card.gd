@@ -27,7 +27,7 @@ func set_dissolve_state(value: float):
 func play_dissolve(fast = false):
 	dissolve_state = 0.0
 	set_dissolve_state(dissolve_state)
-	if fast:
+	if not fast:
 		await get_tree().create_timer(0.5).timeout
 	surbrillance.queue_free()
 	dissolve = true

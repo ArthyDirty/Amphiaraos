@@ -1,10 +1,14 @@
-[gd_scene load_steps=6 format=3 uid="uid://qi4wy48xqd82"]
+[gd_scene load_steps=8 format=3 uid="uid://qi4wy48xqd82"]
 
 [ext_resource type="Texture2D" uid="uid://clgxhavyx8tfy" path="res://Sprites/Plateau.png" id="1_wqnu0"]
 [ext_resource type="PackedScene" uid="uid://yflcd83ftsjq" path="res://Scenes/Utilities/emplacement.tscn" id="3_1v8e7"]
 [ext_resource type="PackedScene" uid="uid://d14t5h65ng55w" path="res://Scenes/Decks/deck.tscn" id="3_128kh"]
 [ext_resource type="Resource" uid="uid://cjmfvbnc6av4j" path="res://Scenes/Decks/moon_large_deck.tres" id="4_adwds"]
 [ext_resource type="PackedScene" path="res://Scenes/Utilities/reset_level.tscn" id="5_adwds"]
+[ext_resource type="Script" uid="uid://wv2aa5rjmmb" path="res://Scenes/Levels/ScoreLabel.gd" id="6_r5js4"]
+
+[sub_resource type="Theme" id="Theme_pr658"]
+default_font_size = 34
 
 [node name="Plateau" type="Node2D"]
 
@@ -58,3 +62,19 @@ deck_data = ExtResource("4_adwds")
 
 [node name="ResetLevel" parent="." instance=ExtResource("5_adwds")]
 position = Vector2(0, 410)
+
+[node name="UserInterface" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="ScoreLabel" type="Label" parent="UserInterface"]
+layout_mode = 0
+offset_left = 350.0
+offset_top = -469.0
+offset_right = 775.0
+offset_bottom = -320.0
+theme = SubResource("Theme_pr658")
+text = "Score : 0"
+script = ExtResource("6_r5js4")
