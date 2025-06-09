@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://bj1ohqg213gf2"]
+
+[ext_resource type="SpriteFrames" uid="uid://fpfrx0fu2hmv" path="res://Sprites/Sprite frames/shadow_sprite_frames.tres" id="1_6y8a6"]
+
+[node name="SpriteFramesBase" type="AnimatedSprite2D"]
+sprite_frames = ExtResource("1_6y8a6")
+animation = &"shadow"

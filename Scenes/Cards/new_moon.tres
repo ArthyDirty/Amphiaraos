@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="CardData" load_steps=2 format=3 uid="uid://b8a38c3k6jw13"]
+
+[ext_resource type="Script" uid="uid://bkbor60wfe7wr" path="res://Scripts/Data/CardData.gd" id="1_24j15"]
+
+[resource]
+script = ExtResource("1_24j15")
+name = 3
+power_type = 2
+sprite_frames_path = "res://Sprites/Sprite frames/new_moon_sprite_frames.tres"
+surbrillance_sprite_frames_path = "res://Sprites/Sprite frames/surbrillance_sprite_frames.tres"
+metadata/_custom_type_script = "uid://bkbor60wfe7wr"

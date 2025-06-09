@@ -1,0 +1,94 @@
+[gd_scene load_steps=8 format=3 uid="uid://cs0bkjbbpfk43"]
+
+[ext_resource type="Texture2D" uid="uid://cu0t6dgoyd1tn" path="res://Sprites/Sprite_SunChoice.png" id="1_n5f0n"]
+[ext_resource type="Script" uid="uid://h5cl0ax1bun0" path="res://Scripts/CopyChoice.gd" id="1_omuk8"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_omuk8"]
+atlas = ExtResource("1_n5f0n")
+region = Rect2(0, 0, 2271, 757)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kc54f"]
+atlas = ExtResource("1_n5f0n")
+region = Rect2(0, 757, 2271, 757)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dqeny"]
+atlas = ExtResource("1_n5f0n")
+region = Rect2(0, 1514, 2271, 757)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_31ygr"]
+atlas = ExtResource("1_n5f0n")
+region = Rect2(0, 2271, 2271, 757)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_k2hy0"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_omuk8")
+}],
+"loop": false,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kc54f")
+}],
+"loop": false,
+"name": &"full_moon",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dqeny")
+}],
+"loop": false,
+"name": &"half_moon",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_31ygr")
+}],
+"loop": false,
+"name": &"new_moon",
+"speed": 5.0
+}]
+
+[node name="CopyChoice" type="Node2D"]
+scale = Vector2(0.5, 0.5)
+script = ExtResource("1_omuk8")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(-0.214321, 1662.5)
+sprite_frames = SubResource("SpriteFrames_k2hy0")
+
+[node name="FullMoon" type="Button" parent="."]
+modulate = Color(1, 1, 1, 0)
+offset_left = -967.214
+offset_top = 1454.5
+offset_right = -543.214
+offset_bottom = 1878.5
+
+[node name="HalfMoon" type="Button" parent="."]
+modulate = Color(1, 1, 1, 0)
+offset_left = -213.214
+offset_top = 1454.5
+offset_right = 210.786
+offset_bottom = 1878.5
+
+[node name="NewMoon" type="Button" parent="."]
+modulate = Color(1, 1, 1, 0)
+offset_left = 542.786
+offset_top = 1454.5
+offset_right = 966.786
+offset_bottom = 1878.5
+
+[connection signal="button_up" from="FullMoon" to="." method="_on_button_up"]
+[connection signal="mouse_entered" from="FullMoon" to="." method="_on_full_moon_mouse_entered"]
+[connection signal="mouse_exited" from="FullMoon" to="." method="_on_mouse_exited"]
+[connection signal="button_up" from="HalfMoon" to="." method="_on_button_up"]
+[connection signal="mouse_entered" from="HalfMoon" to="." method="_on_half_moon_mouse_entered"]
+[connection signal="mouse_exited" from="HalfMoon" to="." method="_on_mouse_exited"]
+[connection signal="button_up" from="NewMoon" to="." method="_on_button_up"]
+[connection signal="mouse_entered" from="NewMoon" to="." method="_on_new_moon_mouse_entered"]
+[connection signal="mouse_exited" from="NewMoon" to="." method="_on_mouse_exited"]

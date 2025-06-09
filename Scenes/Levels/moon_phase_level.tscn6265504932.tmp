@@ -1,0 +1,77 @@
+[gd_scene load_steps=7 format=3 uid="uid://c2x2hny7pku6"]
+
+[ext_resource type="Texture2D" uid="uid://clgxhavyx8tfy" path="res://Sprites/Plateau.png" id="1_u47pq"]
+[ext_resource type="PackedScene" uid="uid://b6xmfdhyoiepm" path="res://Assets/Utilities/Emplacement.tscn" id="3_pfih4"]
+[ext_resource type="PackedScene" uid="uid://swn4k3qkwsbt" path="res://Assets/Utilities/deck.tscn" id="3_sdxlu"]
+[ext_resource type="PackedScene" uid="uid://30c1kqbkjh0j" path="res://Assets/Cards/new_moon.tscn" id="5_4ucqf"]
+[ext_resource type="PackedScene" uid="uid://c1n2fjbxqtml3" path="res://Assets/Main/win_manager.tscn" id="5_wxexr"]
+[ext_resource type="PackedScene" uid="uid://do02x6mxh2ey8" path="res://Assets/Main/power_manager.tscn" id="6_4ucqf"]
+
+[node name="MoonPhaseLevel" type="Node2D"]
+
+[node name="Plateau" type="Sprite2D" parent="."]
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("1_u47pq")
+
+[node name="Emplacement" parent="." instance=ExtResource("3_pfih4")]
+position = Vector2(-684, -328)
+
+[node name="Emplacement2" parent="." instance=ExtResource("3_pfih4")]
+position = Vector2(-486, -328)
+emp_col = 1
+
+[node name="Emplacement3" parent="." instance=ExtResource("3_pfih4")]
+position = Vector2(-290, -328)
+emp_col = 2
+
+[node name="Emplacement4" parent="." instance=ExtResource("3_pfih4")]
+position = Vector2(-684, 10)
+emp_row = 1
+
+[node name="Emplacement5" parent="." instance=ExtResource("3_pfih4")]
+position = Vector2(-486, 10)
+emp_col = 1
+emp_row = 1
+
+[node name="Emplacement6" parent="." instance=ExtResource("3_pfih4")]
+position = Vector2(-290, 10)
+emp_col = 2
+emp_row = 1
+
+[node name="Emplacement7" parent="." instance=ExtResource("3_pfih4")]
+position = Vector2(-684, 340)
+emp_row = 2
+
+[node name="Emplacement8" parent="." instance=ExtResource("3_pfih4")]
+position = Vector2(-486, 340)
+emp_col = 1
+emp_row = 2
+
+[node name="Emplacement9" parent="." instance=ExtResource("3_pfih4")]
+position = Vector2(-290, 340)
+emp_col = 2
+emp_row = 2
+
+[node name="Emplacement10" parent="." instance=ExtResource("3_pfih4")]
+position = Vector2(-100, -328)
+emp_col = 3
+
+[node name="Emplacement11" parent="." instance=ExtResource("3_pfih4")]
+position = Vector2(-100, 10)
+emp_col = 3
+emp_row = 1
+
+[node name="Emplacement12" parent="." instance=ExtResource("3_pfih4")]
+position = Vector2(-100, 340)
+emp_col = 3
+emp_row = 2
+
+[node name="Deck" parent="." instance=ExtResource("3_sdxlu")]
+position = Vector2(467, 10)
+deck = Array[PackedScene]([ExtResource("5_4ucqf"), ExtResource("5_4ucqf"), ExtResource("5_4ucqf"), ExtResource("5_4ucqf")])
+
+[node name="WinManager" parent="." node_paths=PackedStringArray("deck") instance=ExtResource("5_wxexr")]
+deck = NodePath("../Deck")
+
+[node name="PowerManager" parent="." node_paths=PackedStringArray("deck") instance=ExtResource("6_4ucqf")]
+deck = NodePath("../Deck")

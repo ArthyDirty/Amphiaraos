@@ -10,16 +10,24 @@ config_version=5
 
 [application]
 
-config/name="Amphiaraos_v2"
-run/main_scene="uid://bqlf4pfti7sb6"
+config/name="Amphiaraos"
+run/main_scene="uid://qi4wy48xqd82"
 config/features=PackedStringArray("4.4", "Forward Plus")
-config/icon="res://icon.svg"
+config/icon="uid://c2a40hiur2uml"
+
+[autoload]
+
+PowerManager="*res://Scripts/Managers/PowerManager.gd"
+WinManager="*res://Scripts/Managers/WinManager.gd"
 
 [display]
 
 window/size/viewport_width=1920
 window/size/viewport_height=1080
+window/size/borderless=true
 window/stretch/mode="canvas_items"
+window/name="Amphiaraos"
+window/icon="uid://c2a40hiur2uml"
 
 [editor]
 
