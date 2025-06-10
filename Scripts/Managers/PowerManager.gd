@@ -71,8 +71,6 @@ func show_selected():
 			print("reveal selected card ", reveal_hidden_card)
 			return
 	dissolve_last()
-	
-	
 
 
 func dissolve_last():
