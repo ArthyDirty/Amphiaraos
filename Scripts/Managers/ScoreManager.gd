@@ -12,7 +12,6 @@ func _ready() -> void:
 
 func _on_score_change(points_scored):
 	score += points_scored
-	print("total score = ", score)
 	score_changed.emit()
 
 #reste à afficher le score et le highscore en UI

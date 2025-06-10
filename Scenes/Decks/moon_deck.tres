@@ -12,4 +12,7 @@
 script = ExtResource("5_0ttsq")
 deck_name = "moon_deck"
 cards = Array[ExtResource("1_1ndal")]([ExtResource("1_pirie"), ExtResource("1_pirie"), ExtResource("1_pirie"), ExtResource("2_1ndal"), ExtResource("2_1ndal"), ExtResource("2_1ndal"), ExtResource("3_0ttsq"), ExtResource("3_0ttsq"), ExtResource("3_0ttsq"), ExtResource("5_g5qxn"), ExtResource("6_g5qxn")])
+common_cards = Array[ExtResource("1_1ndal")]([ExtResource("2_1ndal"), ExtResource("3_0ttsq")])
+uncommon_cards = Array[ExtResource("1_1ndal")]([ExtResource("1_pirie")])
+rare_cards = Array[ExtResource("1_1ndal")]([ExtResource("5_g5qxn"), ExtResource("6_g5qxn")])
 metadata/_custom_type_script = "uid://bwc1mk78xwfdd"

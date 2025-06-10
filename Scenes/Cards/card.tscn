@@ -34,6 +34,7 @@ offset_left = -285.0
 offset_top = -545.0
 offset_right = 293.0
 offset_bottom = 553.0
+mouse_default_cursor_shape = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_se2ob")

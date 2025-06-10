@@ -30,7 +30,7 @@ func _ready() -> void:
 
 func _on_button_up() -> void:
 	if can_draw:
-		draw_card()
+		spawn_card()
 
 
 func _on_button_mouse_entered() -> void:
@@ -42,15 +42,26 @@ func _on_button_mouse_exited() -> void:
 	surbrillance_animated_sprite.play("default")
 
 
-func draw_card(card: CardData = null):
-	var card_data = card
+func draw_card():
+	var rand = randi_range(1, 100)
+	if rand < 60:
+		return deck_data.common_cards.pick_random()
+	elif rand < 90:
+		return deck_data.uncommon_cards.pick_random()
+	else:
+		return deck_data.rare_cards.pick_random()
+
+
+func spawn_card(card: CardData = null):
+	var card_data
 	
 	if card:
 		card_data = card
 	elif deck_empty:
 		return null
 	else:
-		card_data = cards.pop_front()
+		card_data = draw_card()
+		#card_data = cards.pop_front()
 	
 	var card_instance = card_scene.instantiate()
 	call_deferred("add_child", card_instance)

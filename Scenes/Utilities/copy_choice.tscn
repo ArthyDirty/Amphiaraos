@@ -1,7 +1,7 @@
 [gd_scene load_steps=8 format=3 uid="uid://cs0bkjbbpfk43"]
 
 [ext_resource type="Texture2D" uid="uid://cu0t6dgoyd1tn" path="res://Sprites/Sprite_SunChoice.png" id="1_n5f0n"]
-[ext_resource type="Script" uid="uid://h5cl0ax1bun0" path="res://Scripts/CopyChoice.gd" id="1_omuk8"]
+[ext_resource type="Script" path="res://Scripts/CopyChoice.gd" id="1_omuk8"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_omuk8"]
 atlas = ExtResource("1_n5f0n")
@@ -68,6 +68,7 @@ offset_left = -967.214
 offset_top = 1454.5
 offset_right = -543.214
 offset_bottom = 1878.5
+mouse_default_cursor_shape = 2
 
 [node name="HalfMoon" type="Button" parent="."]
 modulate = Color(1, 1, 1, 0)
@@ -75,6 +76,7 @@ offset_left = -213.214
 offset_top = 1454.5
 offset_right = 210.786
 offset_bottom = 1878.5
+mouse_default_cursor_shape = 2
 
 [node name="NewMoon" type="Button" parent="."]
 modulate = Color(1, 1, 1, 0)
@@ -82,6 +84,7 @@ offset_left = 542.786
 offset_top = 1454.5
 offset_right = 966.786
 offset_bottom = 1878.5
+mouse_default_cursor_shape = 2
 
 [connection signal="button_up" from="FullMoon" to="." method="_on_button_up"]
 [connection signal="mouse_entered" from="FullMoon" to="." method="_on_full_moon_mouse_entered"]

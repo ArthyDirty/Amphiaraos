@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://dl7iidt0o3jsh"]
+[gd_scene load_steps=7 format=3 uid="uid://mruenv7ca7mn"]
 
 [ext_resource type="Script" uid="uid://1277ta7cmg1t" path="res://Scripts/reset_level.gd" id="1_kud1d"]
 [ext_resource type="Texture2D" uid="uid://cbjjt5nybpym4" path="res://Sprites/Sprite_ResetButton_up.png" id="1_vx42f"]
@@ -45,6 +45,7 @@ offset_left = -237.0
 offset_top = -237.0
 offset_right = 237.0
 offset_bottom = 237.0
+mouse_default_cursor_shape = 2
 
 [connection signal="button_down" from="Button" to="." method="_on_button_down"]
 [connection signal="button_up" from="Button" to="." method="_on_button_up"]

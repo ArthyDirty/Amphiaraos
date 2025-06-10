@@ -100,7 +100,6 @@ func _check_n_align(n_align: int = 3) -> bool:
 
 	
 	if score > 0:
-		print(alignment * score)
 		score_changed.emit(alignment * score)
 	
 	return score > 0
