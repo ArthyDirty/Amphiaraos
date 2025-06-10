@@ -7,7 +7,8 @@ enum PowerType {
 	HIDE_WHEN_PLACED,
 	HIDE_NEXT,
 	COPY,
-	HIDE_PLACED_CARDS
+	HIDE_PLACED_CARDS,
+	REVEAL_CARD
 }
 
 var last_card
@@ -32,6 +33,14 @@ static func apply_power(power_type: PowerType, card: Card, deck: Deck = null):
 			card.shadow.material = preload("res://Scenes/Test/dissolve_test.tres")
 			card.card_animated_sprite.play_dissolve()
 			WinManager.cards_in_game.pop_back()
+		
+		PowerType.REVEAL_CARD:
+			card.can_move = false
+			
+			#rajouter selection d'une carte sur le terrain et la faire révéler
+			PowerManager.show_selected()
+			
+			
 
 		PowerType.NONE:
 			pass

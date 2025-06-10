@@ -4,6 +4,7 @@ extends Node
 var deck: Deck = null
 
 var hide_next = false
+var reveal_hidden_card = false
 
 var cards_in_game: Array[Card]
 
@@ -19,6 +20,16 @@ func _on_card_drawn(card_drawn : Card):
 func _on_card_flipped(card):
 	var power_type = card.data.power_type
 	PowerTypes.apply_power(power_type, card, deck)
+
+
+func on_card_clicked(card: Card):
+	print(card.data.name, " is hidden ", card.card_hidden)
+	if reveal_hidden_card and card.card_hidden:
+		card.show_card()
+		reveal_hidden_card = false
+		
+		dissolve_last()
+		
 
 ### Pouvoirs :
 
@@ -51,6 +62,24 @@ func copy_card(card : Card):
 	card.card_animated_sprite.play("verso")
 	
 	card.can_move = true
+
+
+func show_selected():
+	for card  in cards_in_game:
+		if card and card.card_hidden:
+			reveal_hidden_card = true
+			print("reveal selected card ", reveal_hidden_card)
+			return
+	dissolve_last()
+	
+	
+
+
+func dissolve_last():
+	var card = WinManager.cards_in_game.pop_back()
+	card.card_animated_sprite.material = preload("res://Scenes/Test/dissolve_test.tres")
+	card.shadow.material = preload("res://Scenes/Test/dissolve_test.tres")
+	card.card_animated_sprite.play_dissolve()
 
 
 func set_deck(new_deck: Deck) -> void:

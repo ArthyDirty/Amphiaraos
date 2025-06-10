@@ -7,7 +7,7 @@
 [ext_resource type="SpriteFrames" uid="uid://ci8kmltcarids" path="res://Sprites/Sprite frames/shadow_sprite_frames.tres" id="4_yyd00"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_se2ob"]
-size = Vector2(574, 1092)
+size = Vector2(518, 978)
 
 [node name="Card" type="Area2D" groups=["cartes"]]
 z_index = 3
@@ -30,10 +30,10 @@ animation = &"shadow"
 
 [node name="CardButton" type="Button" parent="."]
 modulate = Color(1, 1, 1, 0)
-offset_left = -285.0
-offset_top = -545.0
-offset_right = 293.0
-offset_bottom = 553.0
+offset_left = -256.0
+offset_top = -492.0
+offset_right = 258.0
+offset_bottom = 493.0
 mouse_default_cursor_shape = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

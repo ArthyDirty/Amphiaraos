@@ -114,10 +114,9 @@ func _on_card_button_down():
 
 
 func _on_card_button_up():
-	if card_placed and not card_hidden:
-		# quand on clique sur la carte si elle est placée et face visible nous renvois ses data
-		# peut être utile pour copy_card ou autre pouvoir 
-		print(data) 
+	if card_placed:
+		print(self.data.name)
+		PowerManager.on_card_clicked(self)
 	
 	if not can_move or card_placed:
 		return
@@ -211,6 +210,7 @@ func show_card():
 	card_revealed = true
 	if card_hidden:
 		card_animated_sprite.play("flip")
+		card_hidden = false
 
 func burn_card():
 	var burn_sprite = AnimatedSprite2D.new()

@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="CardData" load_steps=2 format=3 uid="uid://dwt6c7xaygdpj"]
+
+[ext_resource type="Script" uid="uid://bkbor60wfe7wr" path="res://Scripts/Data/CardData.gd" id="1_023uu"]
+
+[resource]
+script = ExtResource("1_023uu")
+name = 6
+power_type = 5
+points = 0
+sprite_frames_path = "res://Sprites/Sprite frames/sight_blessing_sprite_frames.tres"
+surbrillance_sprite_frames_path = "res://Sprites/Sprite frames/surbrillance_sprite_frames.tres"
+metadata/_custom_type_script = "uid://bkbor60wfe7wr"

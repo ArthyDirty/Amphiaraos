@@ -1,11 +1,16 @@
-[gd_resource type="Resource" script_class="DeckData" load_steps=4 format=3 uid="uid://c2pq54a6d13jj"]
+[gd_resource type="Resource" script_class="DeckData" load_steps=6 format=3 uid="uid://c2pq54a6d13jj"]
 
 [ext_resource type="Script" uid="uid://bkbor60wfe7wr" path="res://Scripts/Data/CardData.gd" id="1_jklq1"]
 [ext_resource type="Resource" uid="uid://dhl40n5y1xxf0" path="res://Scenes/Cards/full_moon.tres" id="2_b67vh"]
+[ext_resource type="Resource" uid="uid://mac3sf3xdxup" path="res://Scenes/Cards/half_moon.tres" id="2_jklq1"]
+[ext_resource type="Resource" uid="uid://dwt6c7xaygdpj" path="res://Scenes/Cards/sight_blessing.tres" id="4_jklq1"]
 [ext_resource type="Script" uid="uid://bwc1mk78xwfdd" path="res://Scripts/Data/DeckData.gd" id="5_s2g1c"]
 
 [resource]
 script = ExtResource("5_s2g1c")
 deck_name = "test_deck"
-cards = Array[ExtResource("1_jklq1")]([ExtResource("2_b67vh"), ExtResource("2_b67vh"), ExtResource("2_b67vh"), ExtResource("2_b67vh"), ExtResource("2_b67vh"), ExtResource("2_b67vh"), ExtResource("2_b67vh"), ExtResource("2_b67vh"), ExtResource("2_b67vh")])
+cards = Array[ExtResource("1_jklq1")]([ExtResource("2_jklq1"), ExtResource("2_jklq1"), ExtResource("2_b67vh"), ExtResource("4_jklq1")])
+common_cards = Array[ExtResource("1_jklq1")]([])
+uncommon_cards = Array[ExtResource("1_jklq1")]([])
+rare_cards = Array[ExtResource("1_jklq1")]([])
 metadata/_custom_type_script = "uid://bwc1mk78xwfdd"

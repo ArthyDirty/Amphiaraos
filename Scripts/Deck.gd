@@ -44,9 +44,9 @@ func _on_button_mouse_exited() -> void:
 
 func draw_card():
 	var rand = randi_range(1, 100)
-	if rand < 60:
+	if rand < 65:
 		return deck_data.common_cards.pick_random()
-	elif rand < 90:
+	elif rand < 85:
 		return deck_data.uncommon_cards.pick_random()
 	else:
 		return deck_data.rare_cards.pick_random()
