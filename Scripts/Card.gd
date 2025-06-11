@@ -18,6 +18,7 @@ var card_hidden = false
 var hide = false
 var can_move = true
 var card_moving = false
+var shadow_follow = false
 
 # === Données de placement ===
 var emplacement_hover = false
@@ -90,11 +91,14 @@ func _process(_delta):
 		card_hidden = true
 		hide = false
 	
+	if shadow_follow:
+		shadow.position = card.global_position * 0.2 * Vector2(-1,-1)
+	
 
 func _drag_card():
 	var mouse_pos = get_viewport().get_mouse_position()
 	card.global_position = mouse_pos + dif_pos
-	shadow.position = card.global_position * 0.2 * Vector2(-1,-1)
+	
 
 
 # ============================================================
@@ -109,6 +113,7 @@ func _on_card_button_down():
 	dif_pos = card.global_position - get_viewport().get_mouse_position()
 	card.z_index = 5
 	shadow.visible = true
+	shadow_follow = true
 	card_moving = true
 
 
@@ -161,6 +166,7 @@ func _place_card_with_animation():
 
 
 func _return_to_last_position():
+	
 	var distance = card.global_position.distance_to(last_pos)
 	var duration = distance / 3000.0
 	var overshoot = (card.global_position - last_pos) * 0.01
@@ -168,10 +174,14 @@ func _return_to_last_position():
 
 	var tween = create_tween()
 	tween.tween_property(card, "global_position", overshoot_pos, duration).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
-	tween.tween_property(shadow, "position", Vector2.ZERO, duration/4).set_ease(Tween.EASE_IN_OUT)
 	tween.tween_property(card, "global_position", last_pos, duration/4).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
 
-	await get_tree().create_timer(duration + duration/2).timeout
+	await get_tree().create_timer(duration).timeout
+	shadow_follow = false
+	tween = create_tween()
+	tween.tween_property(shadow, "position", Vector2.ZERO, duration/4).set_ease(Tween.EASE_IN_OUT)
+	
+	await get_tree().create_timer(duration/2).timeout
 	shadow.visible = false
 	card_moving = false
 	
