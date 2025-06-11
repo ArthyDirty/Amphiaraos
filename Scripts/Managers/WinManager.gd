@@ -7,7 +7,7 @@ var Emplacements
 var col_max = 0
 var row_max = 0
 
-var cards_in_game = []
+var cards_in_game: Array[Card] = []
 var jeu = []
 var jeu_emplacements = []
 var jeu_carte = []
@@ -16,30 +16,56 @@ var won = false
 signal score_changed(score)
 
 
+func _process(delta: float) -> void:
+	cards_in_game = GameData.cards_in_game
+
+
 # appelée lorsqu'une carte est placée sur un emplacement
 func _on_card_placed(emp_col, emp_row, card, card_name, node: Emplacement):
 	jeu[emp_col][emp_row] = card_name
 	jeu_emplacements[emp_col][emp_row] = node
 	jeu_carte[emp_col][emp_row] = card
 	if !won:
-		_check_alignement()
+		if !_check_alignement():
+			var card_count = 0
+			for i in jeu_carte:
+				for j in i:
+					if j is Card:
+						card_count += 1
+			print(card_count)
+			if card_count == 9:
+				print("Plus de place")
+				win()
 
 #verifie les alignements plus grand que 3
 func _check_alignement():
 	var max_len = max(col_max + 1,row_max + 1)
+	var align = false
+	
 	for n in range(max_len):
 		if max_len - n > 2:
-			_check_n_align(max_len - n)
+			if _check_n_align(max_len - n):
+				align = true
+	return align
 
 
-func _on_card_drawn(card_drawn):
-	cards_in_game.append(card_drawn)
+func win():
+	won = true
+	deck.can_draw = false
+	await get_tree().create_timer(0.5).timeout
+	for card in cards_in_game:
+		card.show_card()
+		await get_tree().create_timer(0.1).timeout
+	for card in cards_in_game:
+		if card:
+			card.card_animated_sprite.play_dissolve(true)
+			await get_tree().create_timer(0.1).timeout
+	await get_tree().create_timer(2.5).timeout
+	get_tree().reload_current_scene()
+	
+	
+	
 
-
-#func win():
-	#won = true 
-	#for card in cards_in_game:
-		#card.show_card()
 
 #verifie si n mêmes cartes sont alignées
 func _check_n_align(n_align: int = 3) -> bool:
@@ -110,8 +136,6 @@ func cleanup():
 	for emp in Emplacements:
 		if is_instance_valid(emp):
 			emp.card_placed.disconnect(_on_card_placed)
-	if deck and deck.card_drawn.is_connected(_on_card_drawn):
-		deck.card_drawn.disconnect(_on_card_drawn)
 
 
 func reset_win_manager():
@@ -156,6 +180,5 @@ func set_deck(new_deck: Deck) -> void:
 	deck = new_deck
 	# Connecter ou reconnecter le signal, par exemple
 	if deck:
-		deck.card_drawn.connect(_on_card_drawn)
 		reset_win_manager()
 		

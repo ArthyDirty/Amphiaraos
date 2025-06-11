@@ -1,0 +1,63 @@
+[gd_resource type="ShaderMaterial" load_steps=8 format=3 uid="uid://is5qdx6e34hj"]
+
+[sub_resource type="Shader" id="Shader_lmh2i"]
+code = "shader_type canvas_item;
+
+uniform sampler2D texture1 : repeat_enable;
+uniform sampler2D texture2 : repeat_enable;
+
+uniform sampler2D gradientTexture;
+uniform sampler2D colorTexture;
+
+uniform vec2 scroll1 = vec2(0.01,0.01);
+uniform vec2 scroll2 = vec2(-0.01,-0.01);
+
+void fragment() {
+	float textureColor1 = texture(texture1, UV + scroll1 * TIME / vec2(10,10)).r;
+	float textureColor2 = texture(texture2, UV + scroll2 * TIME / vec2(-10,-10)).r;
+	float energy = textureColor1 * textureColor2;
+	float color = texture(gradientTexture, vec2(energy)).r;
+	float invert_color = 1.0 - color;
+	
+	vec4 new_color = mix(COLOR,vec4(0,0,0,0),color * 0.8);
+	vec4 fond = texture(colorTexture, vec2(color));
+	
+	fond.a = fond.a;
+	
+	vec4 effect = mix(fond, vec4(0,0,0,0), invert_color);
+	
+	
+	COLOR = new_color + mix(effect,vec4(0),(1.0 - COLOR.a));
+}"
+
+[sub_resource type="Gradient" id="Gradient_lmh2i"]
+offsets = PackedFloat32Array(0)
+colors = PackedColorArray(0.105882, 0.12549, 0.156863, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_rmkqj"]
+gradient = SubResource("Gradient_lmh2i")
+
+[sub_resource type="Gradient" id="Gradient_rmkqj"]
+interpolation_mode = 1
+offsets = PackedFloat32Array(0, 0.195946, 0.253112, 0.286307, 0.323651, 0.35961, 0.404655)
+colors = PackedColorArray(0, 0, 0, 1, 0.325441, 0.325441, 0.325441, 1, 0.682353, 0.682353, 0.682353, 1, 1, 1, 1, 1, 0.683077, 0.683077, 0.683077, 1, 0.325441, 0.325441, 0.325441, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_cj0n2"]
+gradient = SubResource("Gradient_rmkqj")
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_lmh2i"]
+noise_type = 0
+frequency = 0.021
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_rmkqj"]
+seamless = true
+noise = SubResource("FastNoiseLite_lmh2i")
+
+[resource]
+shader = SubResource("Shader_lmh2i")
+shader_parameter/texture1 = SubResource("NoiseTexture2D_rmkqj")
+shader_parameter/texture2 = SubResource("NoiseTexture2D_rmkqj")
+shader_parameter/gradientTexture = SubResource("GradientTexture1D_cj0n2")
+shader_parameter/colorTexture = SubResource("GradientTexture1D_rmkqj")
+shader_parameter/scroll1 = Vector2(0.1, 0.1)
+shader_parameter/scroll2 = Vector2(0.2, 0.2)

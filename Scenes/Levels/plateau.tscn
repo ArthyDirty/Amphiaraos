@@ -1,6 +1,6 @@
 [gd_scene load_steps=11 format=3 uid="uid://qi4wy48xqd82"]
 
-[ext_resource type="FontFile" uid="uid://bau8h4ff7pnaa" path="res://Divers/BISON-BOLD.TTF" id="1_0t2ds"]
+[ext_resource type="FontFile" uid="uid://bau8h4ff7pnaa" path="res://Divers/Fonts/BISON-BOLD.TTF" id="1_0t2ds"]
 [ext_resource type="Texture2D" uid="uid://clgxhavyx8tfy" path="res://Sprites/Plateau.png" id="1_wqnu0"]
 [ext_resource type="PackedScene" uid="uid://yflcd83ftsjq" path="res://Scenes/Utilities/emplacement.tscn" id="3_1v8e7"]
 [ext_resource type="Texture2D" uid="uid://blo71ok2vsolg" path="res://Sprites/UIRightPanel.png" id="3_5tvr5"]

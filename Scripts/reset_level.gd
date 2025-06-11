@@ -1,3 +1,5 @@
+class_name Reset
+
 extends Node2D
 
 @onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
@@ -7,6 +9,10 @@ func _on_button_down() -> void:
 
 
 func _on_button_up() -> void:
+	reset()
+
+
+func reset():
 	get_tree().reload_current_scene()
 	WinManager.cleanup()
 	ScoreManager.cleanup()

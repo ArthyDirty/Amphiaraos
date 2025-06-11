@@ -20,6 +20,7 @@ signal card_added(card)
 func _ready() -> void:
 	PowerManager.set_deck(self)
 	WinManager.set_deck(self)
+	GameData.set_deck(self)
 	
 	if deck_data and !deck_data.cards.is_empty():
 		cards = deck_data.get_deck_copy()
@@ -34,7 +35,7 @@ func _on_button_up() -> void:
 
 
 func _on_button_mouse_entered() -> void:
-	if !deck_empty:
+	if !deck_empty and can_draw:
 		surbrillance_animated_sprite.play("surbrillance")
 
 

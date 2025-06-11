@@ -3,12 +3,12 @@
 importer="font_data_dynamic"
 type="FontFile"
 uid="uid://bau8h4ff7pnaa"
-path="res://.godot/imported/BISON-BOLD.TTF-cc837210524813f809ed31231646df16.fontdata"
+path="res://.godot/imported/BISON-BOLD.TTF-74e7a55b3f42cc3078d560f92eb86ca0.fontdata"
 
 [deps]
 
-source_file="res://Divers/BISON-BOLD.TTF"
-dest_files=["res://.godot/imported/BISON-BOLD.TTF-cc837210524813f809ed31231646df16.fontdata"]
+source_file="res://Divers/Fonts/BISON-BOLD.TTF"
+dest_files=["res://.godot/imported/BISON-BOLD.TTF-74e7a55b3f42cc3078d560f92eb86ca0.fontdata"]
 
 [params]
 

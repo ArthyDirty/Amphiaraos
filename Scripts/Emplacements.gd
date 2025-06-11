@@ -28,8 +28,6 @@ func place_card(card: Card):
 
 func free_emplacement():
 	card_owned.show_card()
-	card_owned.get_child(0).material = preload("res://Scenes/Test/dissolve_test.tres")
-	card_owned.get_child(2).material = preload("res://Scenes/Test/dissolve_test.tres")
 	card_owned.get_child(0).play_dissolve(true)
 	card_owned = null
 

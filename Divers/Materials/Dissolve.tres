@@ -53,6 +53,7 @@ parameter_name = "dissolve_state"
 hint = 1
 max = 100.0
 default_value_enabled = true
+default_value = 50.0
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_jfgty"]
 
@@ -77,7 +78,7 @@ code = "shader_type canvas_item;
 render_mode blend_mix;
 
 uniform sampler2D tex_frg_4;
-uniform float dissolve_state : hint_range(0.0, 100.0) = 0.0;
+uniform float dissolve_state : hint_range(0.0, 100.0) = 50.0;
 
 
 

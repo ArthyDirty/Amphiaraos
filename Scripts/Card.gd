@@ -15,7 +15,6 @@ var data: CardData
 var card_clicked = false
 var card_placed = false
 var card_hidden = false
-var card_revealed = false
 var hide = false
 var can_move = true
 var card_moving = false
@@ -86,7 +85,7 @@ func _process(_delta):
 			surbrillance_animated_sprite.play("surbrillance")
 	
 	
-	if card_placed and hide and not card_revealed:
+	if card_placed and hide:
 		card_animated_sprite.play("hide")
 		card_hidden = true
 		hide = false
@@ -95,7 +94,7 @@ func _process(_delta):
 func _drag_card():
 	var mouse_pos = get_viewport().get_mouse_position()
 	card.global_position = mouse_pos + dif_pos
-	card_animated_sprite.position = card.global_position * 0.2 * Vector2(1,1)
+	shadow.position = card.global_position * 0.2 * Vector2(-1,-1)
 
 
 # ============================================================
@@ -115,7 +114,6 @@ func _on_card_button_down():
 
 func _on_card_button_up():
 	if card_placed:
-		print(self.data.name)
 		PowerManager.on_card_clicked(self)
 	
 	if not can_move or card_placed:
@@ -152,7 +150,7 @@ func _place_card_with_animation():
 	
 	var tween = create_tween()
 	tween.tween_property(card, "global_position", emplacement_pos, 0.4).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
-	tween.tween_property(card_animated_sprite, "position", Vector2.ZERO, duration/4).set_ease(Tween.EASE_IN_OUT)
+	tween.tween_property(shadow, "position", Vector2.ZERO, duration/4).set_ease(Tween.EASE_IN_OUT)
 
 	
 	await get_tree().create_timer(duration + duration/2).timeout
@@ -170,7 +168,7 @@ func _return_to_last_position():
 
 	var tween = create_tween()
 	tween.tween_property(card, "global_position", overshoot_pos, duration).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
-	tween.tween_property(card_animated_sprite, "position", Vector2.ZERO, duration/4).set_ease(Tween.EASE_IN_OUT)
+	tween.tween_property(shadow, "position", Vector2.ZERO, duration/4).set_ease(Tween.EASE_IN_OUT)
 	tween.tween_property(card, "global_position", last_pos, duration/4).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
 
 	await get_tree().create_timer(duration + duration/2).timeout
@@ -207,7 +205,6 @@ func hide_card():
 		hide = true
 
 func show_card():
-	card_revealed = true
 	if card_hidden:
 		card_animated_sprite.play("flip")
 		card_hidden = false

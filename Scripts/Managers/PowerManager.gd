@@ -6,7 +6,12 @@ var deck: Deck = null
 var hide_next = false
 var reveal_hidden_card = false
 
-var cards_in_game: Array[Card]
+var cards_in_game: Array[Card] = []
+
+
+func _process(delta: float) -> void:
+	cards_in_game = GameData.cards_in_game
+
 
 func _on_card_drawn(card_drawn : Card):
 	cards_in_game.append(card_drawn)
@@ -23,7 +28,6 @@ func _on_card_flipped(card):
 
 
 func on_card_clicked(card: Card):
-	print(card.data.name, " is hidden ", card.card_hidden)
 	if reveal_hidden_card and card.card_hidden:
 		card.show_card()
 		reveal_hidden_card = false
@@ -49,6 +53,7 @@ func hide_placed_cards():
 
 func copy_card(card : Card):
 	card.can_move = false
+	
 	# choix d'une carte parmis celle du deck moon
 	var copy_choice_scene = preload("res://Scenes/Utilities/copy_choice.tscn")
 	var copy_choice = copy_choice_scene.instantiate()
@@ -74,14 +79,12 @@ func show_selected():
 
 
 func dissolve_last():
-	var card = WinManager.cards_in_game.pop_back()
-	card.card_animated_sprite.material = preload("res://Scenes/Test/dissolve_test.tres")
-	card.shadow.material = preload("res://Scenes/Test/dissolve_test.tres")
+	var card = GameData.last_card_drawn
 	card.card_animated_sprite.play_dissolve()
 
 
 func set_deck(new_deck: Deck) -> void:
-	cards_in_game = []
+	cards_in_game = GameData.cards_in_game
 	hide_next = false
 	deck = new_deck
 	# Connecter ou reconnecter le signal, par exemple
