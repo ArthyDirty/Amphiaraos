@@ -32,10 +32,9 @@ func _on_card_placed(emp_col, emp_row, card, card_name, node: Emplacement):
 				for j in i:
 					if j is Card:
 						card_count += 1
-			print(card_count)
 			if card_count == 9:
 				print("Plus de place")
-				win()
+				end_game()
 
 #verifie les alignements plus grand que 3
 func _check_alignement():
@@ -49,7 +48,7 @@ func _check_alignement():
 	return align
 
 
-func win():
+func end_game():
 	won = true
 	deck.can_draw = false
 	await get_tree().create_timer(0.5).timeout
@@ -61,7 +60,7 @@ func win():
 			card.card_animated_sprite.play_dissolve(true)
 			await get_tree().create_timer(0.1).timeout
 	await get_tree().create_timer(2.5).timeout
-	get_tree().reload_current_scene()
+	GameData.reset_level()
 	
 	
 	

@@ -1,6 +1,7 @@
 extends Node
 
 
+var cards_drawn_history = []
 var cards_in_game: Array[Card] = []
 var deck: Deck = null
 
@@ -17,8 +18,11 @@ func _process(delta: float) -> void:
 
 func _on_card_drawn(card: Card):
 	cards_in_game.append(card)
+	cards_drawn_history.append(CardNames.CardName.keys()[card.data.name])
 	last_card_drawn = card
 
+func display_history():
+	print(cards_drawn_history)
 
 func clean_cards_in_game():
 	var index = 0
@@ -27,6 +31,11 @@ func clean_cards_in_game():
 			cards_in_game.remove_at(index)
 		index += 1
 
+func reset_level():
+	display_history()
+	get_tree().reload_current_scene()
+	WinManager.cleanup()
+	ScoreManager.cleanup()
 
 func set_deck(new_deck: Deck) -> void:
 	cards_in_game = []

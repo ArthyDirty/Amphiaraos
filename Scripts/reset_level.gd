@@ -9,10 +9,4 @@ func _on_button_down() -> void:
 
 
 func _on_button_up() -> void:
-	reset()
-
-
-func reset():
-	get_tree().reload_current_scene()
-	WinManager.cleanup()
-	ScoreManager.cleanup()
+	GameData.reset_level()
