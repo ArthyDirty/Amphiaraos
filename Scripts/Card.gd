@@ -215,9 +215,11 @@ func hide_card():
 		hide = true
 
 func show_card():
+	hide = false
 	if card_hidden:
 		card_animated_sprite.play("flip")
 		card_hidden = false
+		
 
 func burn_card():
 	var burn_sprite = AnimatedSprite2D.new()
