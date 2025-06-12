@@ -14,10 +14,13 @@ func _process(delta: float) -> void:
 
 
 func _on_card_drawn(card_drawn : Card):
-	cards_in_game.append(card_drawn)
 	if hide_next:
 		hide_next = false
 		card_drawn.hide_card_on_draw()
+		if card_drawn.data in deck.deck_data.rare_cards:
+			var card_replaced = CardNames.CardName.keys()[card_drawn.data.name]
+			card_drawn.data = deck.deck_data.common_cards.pick_random()
+			GameData.cards_drawn_history.append(str(card_replaced) + " hidden replaced by next card")
 		return
 	card_drawn.card_flipped.connect(_on_card_flipped)
 
@@ -73,7 +76,6 @@ func show_selected():
 	for card  in cards_in_game:
 		if card and card.card_hidden:
 			reveal_hidden_card = true
-			print("reveal selected card ", reveal_hidden_card)
 			return
 	dissolve_last()
 
