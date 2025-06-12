@@ -33,7 +33,6 @@ func _on_card_placed(emp_col, emp_row, card, card_name, node: Emplacement):
 					if j is Card:
 						card_count += 1
 			if card_count == 9:
-				print("Plus de place")
 				end_game()
 
 #verifie les alignements plus grand que 3

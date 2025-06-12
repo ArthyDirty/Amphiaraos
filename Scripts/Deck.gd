@@ -6,13 +6,18 @@ extends Node2D
 @onready var surbrillance_animated_sprite: AnimatedSprite2D = $SurbrillanceAnimatedSprite
 
 const card_scene = preload("res://Scenes/Cards/card.tscn")
+
 @export var deck_data: DeckData
+
+@export_range(0, 100,1) var uncommon_chance: int = 25
+@export_range(0, 100,1) var rare_chance: int = 15
+
+@export var draw_delay := 1.0  # secondes entre deux tirages
 
 var cards: Array[CardData]
 var deck_empty = true
 
 var can_draw := true
-@export var draw_delay := 1.0  # secondes entre deux tirages
 
 signal card_drawn(card)
 signal card_added(card)
@@ -32,6 +37,7 @@ func _ready() -> void:
 func _on_button_up() -> void:
 	if can_draw:
 		spawn_card()
+		can_draw = false
 
 
 func _on_button_mouse_entered() -> void:
@@ -45,12 +51,13 @@ func _on_button_mouse_exited() -> void:
 
 func draw_card():
 	var rand = randi_range(1, 100)
-	if rand < 65:
-		return deck_data.common_cards.pick_random()
-	elif rand < 85:
+		
+	if rand <= rare_chance:
+		return deck_data.rare_cards.pick_random()
+	elif rand <= rare_chance + uncommon_chance:
 		return deck_data.uncommon_cards.pick_random()
 	else:
-		return deck_data.rare_cards.pick_random()
+		return deck_data.common_cards.pick_random()
 
 
 func spawn_card(card: CardData = null):
