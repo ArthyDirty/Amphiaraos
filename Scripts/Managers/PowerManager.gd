@@ -33,6 +33,8 @@ func _on_card_flipped(card):
 func on_card_clicked(card: Card):
 	if reveal_hidden_card and card.card_hidden:
 		card.show_card()
+		for element in cards_in_game:
+			element.selectable = false
 		reveal_hidden_card = false
 		
 		dissolve_last()
@@ -76,7 +78,9 @@ func show_selected():
 	for card  in cards_in_game:
 		if card and card.card_hidden:
 			reveal_hidden_card = true
-			return
+			card.selectable = true
+	if reveal_hidden_card:
+		return
 	dissolve_last()
 
 
